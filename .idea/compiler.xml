@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="sch02" />
+        <module name="sch01" />
+        <module name="microblog" />
+        <module name="boot3-mybatis" />
+        <module name="724" />
+        <module name="crm" />
+        <module name="sch09" />
+        <module name="sch10" />
+        <module name="boot" />
+        <module name="fch03" />
+        <module name="fch02" />
+        <module name="fch01" />
+        <module name="boot7" />
+        <module name="boot8" />
+        <module name="springboot" />
+        <module name="boot6" />
+        <module name="boot5" />
+        <module name="boot4" />
+        <module name="boot3" />
+        <module name="boot2" />
+        <module name="boot1" />
+        <module name="oasys" />
+        <module name="sch08" />
+        <module name="sch07" />
+        <module name="sch06" />
+        <module name="sch05" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="724" target="1.7" />
+      <module name="boot1" target="1.8" />
+      <module name="boot2" target="1.8" />
+      <module name="boot3" target="1.8" />
+      <module name="boot3-mybatis" target="1.8" />
+      <module name="boot4" target="1.8" />
+      <module name="boot5" target="1.8" />
+      <module name="boot6" target="1.8" />
+      <module name="boot7" target="1.8" />
+      <module name="boot8" target="8" />
+      <module name="crm" target="1.8" />
+      <module name="fch01" target="1.7" />
+      <module name="fch02" target="1.7" />
+      <module name="fch03" target="1.7" />
+      <module name="framefoundation" target="1.7" />
+      <module name="microblog" target="1.7" />
+      <module name="oasys" target="1.7" />
+      <module name="sch01" target="1.7" />
+      <module name="sch02" target="1.7" />
+      <module name="sch05" target="1.7" />
+      <module name="sch06" target="1.7" />
+      <module name="sch07" target="1.7" />
+      <module name="sch08" target="1.7" />
+      <module name="sch09" target="1.7" />
+      <module name="sch10" target="1.7" />
+      <module name="springboot" target="1.5" />
+      <module name="ssm" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="boot1" options="-parameters" />
+      <module name="boot2" options="-parameters" />
+      <module name="boot3" options="-parameters" />
+      <module name="boot3-mybatis" options="-parameters" />
+      <module name="boot4" options="-parameters" />
+      <module name="boot5" options="-parameters" />
+      <module name="boot6" options="-parameters" />
+      <module name="boot7" options="-parameters" />
+      <module name="boot8" options="-parameters" />
+      <module name="crm" options="-parameters" />
+      <module name="springboot" options="" />
+    </option>
+  </component>
+</project>

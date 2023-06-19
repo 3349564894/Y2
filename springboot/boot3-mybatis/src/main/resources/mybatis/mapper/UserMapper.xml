@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.mapper.UserMapper">
+<!--    <resultMap id="UserResultMap" type="com.yq.pojo.User">-->
+<!--        <id column="usr_id" property="usr_id"/>-->
+<!--        <result column="usr_name" property="usr_name"/>-->
+<!--        <result column="usr_password" property="usr_password"/>-->
+<!--        <result column="usr_role_id" property="usr_role_id"/>-->
+<!--        <result column="usr_flag" property="usr_flag"/>-->
+<!--    </resultMap>-->
+<!--    <sql id="columns">-->
+<!--        usr_id,usr_name,usr_password,usr_role_id,usr_flag-->
+<!--    </sql>-->
+<!--    <select id="find" resultType="User" parameterType="_long">-->
+<!--        select-->
+<!--        <include refid="columns"/>-->
+<!--        from sys_user-->
+<!--        where usr_id = #{usrId,jdbcType=BIGINT,javaType=_long}-->
+<!--    </select>-->
+<!--    <select id="findAll" resultType="User">-->
+<!--        select-->
+<!--        <include refid="columns"/>-->
+<!--        from sys_user-->
+<!--    </select>-->
+<!--&lt;!&ndash;    <insert id="insert" parameterType="User">&ndash;&gt;-->
+<!--        insert into-->
+<!--        sys_user(usr_name,usr_password,usr_role_id,usr_flag)-->
+<!--        values(#{usr_name},#{usr_password},#{usr_role_id},#{usr_flag})-->
+<!--    </insert>-->
+<!--    <delete id="delete" parameterType="_long">-->
+<!--        delete from sys_user-->
+<!--        where usr_id = #{usrId}-->
+<!--    </delete>-->
+<!--    <update id="update">-->
+<!--        update sys_user-->
+<!--        set `usr_password` = #{usrPassword}-->
+<!--        where usr_id = #{usrId}-->
+<!--    </update>-->
+</mapper>

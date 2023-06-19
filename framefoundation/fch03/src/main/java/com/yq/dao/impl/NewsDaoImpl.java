@@ -1,0 +1,15 @@
+package com.yq.dao.impl;
+
+import com.yq.dao.NewsDao;
+import com.yq.entity.News;
+import org.apache.log4j.Logger;
+
+public class NewsDaoImpl implements NewsDao {
+
+    private Logger logger = Logger.getLogger(this.getClass());
+
+    @Override
+    public void save(News news) {
+        logger.debug("保存信息到数据库");
+    }
+}

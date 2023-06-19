@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入包含数据库参数的database.properties文件-->
+    <properties resource="database.properties"/>
+    <!--1、设置MyBatis框架的运行时行为-->
+    <settings>
+        <!--        使用Log4j作为MyBatis框架的日志实现-->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <!--    设置别名-->
+    <typeAliases>
+        <typeAlias type="com.yq.entity.SysUser" alias="sysuser"/>
+        <typeAlias type="com.yq.entity.T_Storage_Relcord" alias="T_Storage_Relcord"/>
+        <typeAlias type="com.yq.entity.SysRole" alias="sysrole"/>
+        <typeAlias type="com.yq.entity.Address" alias="address"/>
+    </typeAliases>
+    <!--配置MyBatis运行环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--配置事务管理器，采用JDBC事务，由应用自行管理事务-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--配置数据源-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mapper/SysUserMapper.xml"/>
+        <mapper resource="mapper/T_Storage_RelcordMapper.xml"/>
+    </mappers>
+
+</configuration>

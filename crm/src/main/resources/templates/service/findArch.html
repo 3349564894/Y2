@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .x_content form ul {
+            list-style: none;
+        }
+
+        .x_content form ul li {
+            width: 350px;
+            display: inline-block;
+            height: 40px;
+            line-height: 40px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="clearfix"></div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>客户服务管理 &gt; 服务反馈 <i class="fa fa-user"></i></h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="clearfix"></div>
+                    <form class="form-horizontal form-label-left" method="post">
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrId"> 编号 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrId" class="form-control col-md-7 col-xs-12" value="4"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrId"
+                                       required="required"
+                                       th:value="${serviceFindArch.svrId}" placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrType"> 服务类型 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrType" class="form-control col-md-7 col-xs-12" value="咨询"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrType"
+                                       th:value="${serviceFindArch.svrType}" required="required" placeholder=""
+                                       type="text" readonly="">
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrTitle"> 概要 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrTitle" th:value="${serviceFindArch.svrTitle}"
+                                       class="form-control col-md-7 col-xs-12" value="rrrrrrr"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrTitle"
+                                       required="required" placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrCustName"> 客户 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrCustName" th:value="${serviceFindArch.svrCustName}"
+                                       class="form-control col-md-7 col-xs-12" value="rrrrrrrrrrrrrrrrr"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrCustName"
+                                       required="required" placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrStatus"> 状态 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrStatus" th:value="${serviceFindArch.svrStatus}"
+                                       class="form-control col-md-7 col-xs-12" value="已归档"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrStatus"
+                                       required="required" placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrDeal"> 服务请求 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrDeal" th:value="${serviceFindArch.svrRequest}"
+                                       class="form-control col-md-7 col-xs-12" value="rrrrrrrrrreeeeeeeeeeeeeeerrrrrre"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrDeal"
+                                       required="required" placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrCreateBy"> 创建人 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrCreateBy" th:value="${serviceFindArch.svrCreateBy}"
+                                       class="form-control col-md-7 col-xs-12" value="hlliu"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrCreateBy"
+                                       required="required" placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrCreateDate"> 创建时间 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrCreateDate"
+                                       th:value="${#dates.format(serviceFindArch.svrCreateDate,'yyyy-MM-dd')}"
+                                       class="form-control col-md-7 col-xs-12" value="2007-12-13 00:00:00.0"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrCreateDate"
+                                       required="required" placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrDueTo"> 分配给 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrDueTo" th:value="${serviceFindArch.svrDueTo}"
+                                       class="form-control col-md-7 col-xs-12" value="hlliu"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrDueTo"
+                                       required="required" placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrDueDate"> 分配时间 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrDueDate"
+                                       th:value="${#dates.format(serviceFindArch.svrDueDate,'yyyy-MM-dd')}"
+                                       class="form-control col-md-7 col-xs-12" value="2007-12-13 00:00:00.0"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrDueDate"
+                                       required="required" placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrDealBy"> 处理人 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrDealBy" th:value="${serviceFindArch.svrDealBy}"
+                                       class="form-control col-md-7 col-xs-12" value="admin"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrDealBy"
+                                       required="required" placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrDealDate"> 处理时间 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrDealDate"
+                                       th:value="${#dates.format(serviceFindArch.svrDealDate,'yyyy-MM-dd')}"
+                                       class="form-control col-md-7 col-xs-12" value="2007-12-13 00:00:00.0"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrDealDate"
+                                       required="required" placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrResult"> 处理结果 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrResult" th:value="${serviceFindArch.svrResult}"
+                                       class="form-control col-md-7 col-xs-12" value="rrrrrrrrr"
+                                       data-validate-length-range="10" data-validate-words="1" name="svrResult"
+                                       required="required" placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+
+                        <!--th:text="${serviced.svrSatisfy}==1 ?'⭐': '⭐⭐'-->
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrSatisfy"> 满意度 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrSatisfy" th:value="${serviceFindArch.svrSatisfy}"
+                                       class="form-control col-md-7 col-xs-12" data-validate-length-range="10"
+                                       data-validate-words="1" name="svrSatisfy" required="required" value="3"
+                                       placeholder="" type="text" readonly="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button type="button" class="btn btn-primary" id="back" onclick="history.go(-1)">返回
+                                </button>
+                                <br><br>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

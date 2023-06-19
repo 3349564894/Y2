@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.UserDao">
+    <!--    //查找用户是否存在-->
+    <!--    public User findUser(@Param("userId")String userId,@Param("password") String password) throws SQLException;-->
+    <select id="findUser" resultType="User">
+        select * from user where userId=#{userId} and password=#{password}
+    </select>
+    <!--    //更新用户头像-->
+    <!--    public int updateUser(User user) throws SQLException;-->
+    <update id="updateUser">
+        update user
+        set
+        password=#{password},
+        email=#{email},
+        nickname=#{nickname},
+        name=#{name},
+        image=#{image},
+        address=#{address},
+        mysite=#{mysite},
+        sign=#{sign} ,
+        ispublic=#{ispublic}
+        where id=#{id}
+    </update>
+    <!--    //查找用户Id是否已被使用-->
+    <!--    public int findUsers(String userId) throws SQLException;-->
+    <select id="findUsers" parameterType="string" resultType="int">
+        select count(*) from user where userId=#{userId}
+    </select>
+    <!--    //注册新用户-->
+    <!--    public int register(User user,@Param("now") String now) throws SQLException;-->
+    <insert id="register">
+        insert into user(userId,password,nickname,image,name,birthday,address,email,createtime,ispublic)
+        values(#{userId},#{password},#{nickname},#{image},#{name},#{birthday},#{address},#{email},#{createtime},'T')
+    </insert>
+</mapper>

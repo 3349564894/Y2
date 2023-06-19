@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.CommentDao">
+    <!--    // 根据微博id获取微博评价数目-->
+    <!--    public int getCommentCountByBid(int bid) throws SQLException;-->
+    <select id="getCommentCountByBid" parameterType="int" resultType="int">
+        select count(*) from comment where bid = #{bid}
+    </select>
+    <!--    //获取微博评论列表-->
+    <!--    public List<Comment> getCommentsByBid(int bid) throws SQLException;-->
+    <select id="getCommentsByBid" parameterType="int" resultType="Comment">
+        select bid, content, time, nickname, image from comment inner join user where comment.uid = user.id and bid =
+        #{bid} order by time desc
+    </select>
+    <!--    //添加评论-->
+    <!--    public int addComment(Comment comment,String now) throws SQLException;-->
+    <insert id="addComment">
+        insert into comment(uid,bid,content,time) values(#{uid},#{bid},#{content},#{now})
+    </insert>
+    <!--    //删除某条微博评论-->
+    <!--    public int deleteCommentsByBid(int bid) throws SQLException;-->
+    <delete id="deleteCommentsByBid" parameterType="int">
+        delete from comment where bid = #{bid}
+    </delete>
+    <!--    //分页获取评论列表-->
+    <!--    public List<Comment> getCommentsByPage(@Param("bid") int bid, @Param("pageNo") int pageNo,@Param("pageSize") int pageSize) throws SQLException;-->
+    <select id="getCommentsByPage" resultType="Comment">
+        select bid, content, time, nickname, image from comment inner join user where comment.uid = user.id and bid =
+        #{bid} order by time desc LIMIT #{pageNo}, #{pageSize}
+    </select>
+</mapper>

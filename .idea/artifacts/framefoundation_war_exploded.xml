@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="framefoundation:war exploded">
+    <output-path>$PROJECT_DIR$/framefoundation/target/framefoundation</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>framefoundation</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="framefoundation" />
+        </element>
+      </element>
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/framefoundation/target/framefoundation/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="javaee-facet-resources" facet="framefoundation/web/Web" />
+    </root>
+  </artifact>
+</component>

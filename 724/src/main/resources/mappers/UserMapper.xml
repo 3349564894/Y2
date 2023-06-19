@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.UserDao">
+    <select id="findUser" resultType="com.yq.entity.User" parameterType="string">
+        select
+        id,
+        account,
+        realName,
+        `password`,
+        sex,
+        birthday,
+        phone,
+        address,
+        roleId,
+        createdUserId,
+        createdTime,
+        updatedUserId,
+        updatedTime
+        from t_sys_user
+        where account = #{account}
+    </select>
+    <select id="findUserList" resultType="com.yq.entity.User">
+        select
+        id,
+        account,
+        realName,
+        `password`,
+        sex,
+        birthday,
+        phone,
+        address,
+        roleId,
+        createdUserId,
+        createdTime,
+        updatedUserId,
+        updatedTime
+        from t_sys_user
+    </select>
+    <!--    <insert></insert>-->
+    <!--    <delete></delete>-->
+    <update id="changePassword" parameterType="string">
+        update from t_sys_user
+        set `password` = #{newPassword}
+        where account = #{account}
+    </update>
+</mapper>

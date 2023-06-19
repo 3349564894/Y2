@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="microblog:war">
+    <output-path>$PROJECT_DIR$/microblog/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>microblog</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="microblog.war">
+      <element id="artifact" artifact-name="microblog:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/724/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/724/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crm/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framefoundation/fch01/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framefoundation/fch02/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framefoundation/fch02/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framefoundation/fch03/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/framefoundation/fch03/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microblog/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/microblog/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oasys/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/oasys/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot1/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot2/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot3-mybatis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot3-mybatis/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot3/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot3/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot4/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot5/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot6/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot7/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/springboot/boot8/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch01/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch01/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch02/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch02/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch05/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch05/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch06/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch06/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch07/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch07/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch08/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch08/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch09/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch09/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch10/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/ssm/sch10/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

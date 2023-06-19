@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入包含数据库参数的database.properties文件-->
+    <properties resource="database.properties"/>
+    <!--1、设置MyBatis框架的运行时行为-->
+    <settings>
+        <!--        使用Log4j作为MyBatis框架的日志实现-->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <!--    设置别名-->
+    <typeAliases>
+        <typeAlias type="com.yq.entity.Blog" alias="Blog"/>
+        <typeAlias type="com.yq.entity.Collection" alias="Collection_"/>
+        <typeAlias type="com.yq.entity.Comment" alias="Comment"/>
+        <typeAlias type="com.yq.entity.Follow" alias="Follow"/>
+        <typeAlias type="com.yq.entity.Likes" alias="Likes"/>
+        <typeAlias type="com.yq.entity.User" alias="User"/>
+    </typeAliases>
+    <!--配置MyBatis运行环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--配置事务管理器，采用JDBC事务，由应用自行管理事务-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--配置数据源-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mapper/BlogDaoMapper.xml"/>
+        <mapper resource="mapper/CollectionDaoMapper.xml"/>
+        <mapper resource="mapper/CommentDaoMapper.xml"/>
+        <mapper resource="mapper/FollowDaoMapper.xml"/>
+        <mapper resource="mapper/LikesDaoMapper.xml"/>
+        <mapper resource="mapper/UserDaoMapper.xml"/>
+    </mappers>
+
+</configuration>

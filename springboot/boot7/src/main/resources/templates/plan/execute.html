@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/localcss/crmlist.css}" href="../static/localcss/crmlist.css" rel="stylesheet">
+
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-sm-12">
+                    <h5>客户介绍:</h5>
+                    <!--                            <a href="/toAdd" th:href="@{/toAdd}"-->
+                    <!--                               class="btn btn-success btn-sm">新增销售机会</a>-->
+                    <table
+                            class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+                            cellspacing="0" width="100%" role="grid"
+                            aria-describedby="datatable-responsive_info" style="width: 100%;">
+                        <tr role="row">
+                            <th class="sorting" tabindex="0"
+                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                aria-label="Last name: activate to sort column ascending">
+                                客户名称
+                            </th>
+                            <td th:text="${chance.chcCustName}">张三</td>
+                            <th class="sorting_asc" tabindex="0"
+                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                aria-label="First name: activate to sort column descending"
+                                aria-sort="ascending">机会来源
+                            </th>
+                            <td th:text="${chance.chcSource}">主动联系</td>
+                        </tr>
+                        <tr role="row">
+                            <th class="sorting" tabindex="0"
+                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                aria-label="Last name: activate to sort column ascending">
+                                负责人
+                            </th>
+                            <td th:text="${chance.chcLinkman}">李四</td>
+                            <th class="sorting_asc" tabindex="0"
+                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                aria-label="First name: activate to sort column descending"
+                                aria-sort="ascending">成功几率
+                            </th>
+                            <td th:text="${chance.chcRate}">80</td>
+                        </tr>
+                        <tr role="row">
+                            <th class="sorting" tabindex="0"
+                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                aria-label="Last name: activate to sort column ascending">
+                                概要
+                            </th>
+                            <td th:text="${chance.chcTitle}">做软件的</td>
+                            <th class="sorting_asc" tabindex="0"
+                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                aria-label="First name: activate to sort column descending"
+                                aria-sort="ascending">公司电话
+                            </th>
+                            <td th:text="${chance.chcTel}">1345679215</td>
+                        </tr>
+                        <tr role="row">
+                            <th class="sorting" tabindex="0"
+                                aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                aria-label="Last name: activate to sort column ascending">
+                                机会描述
+                            </th>
+                            <td th:text="${chance.chcDesc}">无</td>
+                        </tr>
+                    </table>
+                    <form>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12" id="query">
+            <div class="x_panel">
+                <div class="x_content">
+                    <p class="text-muted font-13 m-b-30"></p>
+                    <div id="datatable-responsive_wrapper"
+                         class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="datatable-responsive"
+                                       class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+                                       cellspacing="0" width="100%" role="grid"
+                                       aria-describedby="datatable-responsive_info" style="width: 100%;">
+                                    <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0"
+                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                            aria-label="First name: activate to sort column descending"
+                                            aria-sort="ascending">日期
+                                        </th>
+                                        <th class="sorting" tabindex="0"
+                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                            aria-label="Last name: activate to sort column ascending">
+                                            计划项
+                                        </th>
+                                        <th class="sorting" tabindex="0"
+                                            aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                            aria-label="Last name: activate to sort column ascending">
+                                            执行结果
+                                        </th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody id="data_list">
+                                    <tr role="row" class="odd" th:each="plan:${plan}">
+
+                                        <input type="hidden" th:value="${plan.plaId}" name="plaId"/>
+
+                                        <td tabindex="0" class="sorting_1" name="plaDate"
+                                            th:text="${#dates.format(plan.plaDate,'yyyy-MM-dd')}">日期
+                                        </td>
+                                        <td name="plaTodo" th:text="${plan.plaTodo}">计划项</td>
+                                        <td th:if="${plan.plaResult == null}">
+                                            <input type="text" name="plaResult"/>
+                                            <input type="button" value="保存" onclick="javascript:add(this)"/>
+                                        </td>
+                                        <td th:if="${plan.plaResult != null}">
+                                            <span th:text="${plan.plaResult}"/>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+
+<script layout:fragment="js" th:inline="javascript">
+    function add(obj) {
+        //var plaId = $("input[name='plaId']").val();
+        var plaResult = $("input[name='plaResult']").val();
+        var plaId = $(obj).parents("tr").children().eq(0).val();
+
+        if (plaResult != null && plaResult != "") {
+            $.ajax({
+                url: "/plan/update",
+                type: "POST",
+                data: {
+                    "plaId": plaId,
+                    "plaResult": plaResult,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if (data.delResult == "true") {
+                        alert("保存成功！");
+                        // 刷新页面
+                        location.reload();
+                    }
+                },
+                error: function (data) {
+                    alert("对不起，保存失败！");
+                }
+            })
+        } else {
+            alert("结果不能为空");
+            return;
+        }
+
+    }
+
+</script>
+</body>
+</html>

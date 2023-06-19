@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>客户开发计划</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="x_title">
+        <h2>
+            销售机会管理
+            <small>
+                - ^_^
+            </small>
+        </h2>
+    </div>
+
+    <div class="x_content">
+        <form method="post" action="/chance/list" th:action="@{/chance/list}">
+            <input type="hidden" name="pageIndex" value="1"/>
+            客户名称 <input name="chcCustName" type="text"
+                        class="form-control col-md-6 col-xs-12" value="">
+            负责人 <input name="chcLinkman" type="text"
+                       class="form-control col-md-6 col-xs-12" value="">
+            概要 <input name="chcDesc" type="text"
+                      class="form-control col-md-6 col-xs-12" value="">
+            <button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询</button>
+        </form>
+    </div>
+</div>
+</div><br>
+<div class="col-sm-12">
+    <a href="/plan/toadd" th:href="@{/plan/toadd}"
+       class="btn btn-success btn-sm">新增销售机会</a>
+    <a href="/main" th:href="@{/main}">返回</a><br><br>
+    <table border="1px">
+        <thead>
+        <tr role="row">
+            <th>
+                编号
+            </th>
+            <th>
+                客户名称
+            </th>
+            <th>
+                负责人
+            </th>
+            <th>
+                公司电话
+            </th>
+            <th>
+                状态
+            </th>
+            <th>
+                概要
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr role="row" class="odd" th:each="plan:${planPage}">
+            <td tabindex="0" class="sorting_1" th:text="${plan.chcId}">chcId</td>
+            <td tabindex="0" class="sorting_1" th:text="${plan.chcCustName}">chcCustName</td>
+            <td tabindex="0" class="sorting_1" th:text="${plan.chcLinkman}">chcLinkman</td>
+            <td tabindex="0" class="sorting_1" th:text="${plan.chcTel}">chcTel</td>
+            <td tabindex="0" class="sorting_1" th:text="${plan.chcStatus}">chcStatic</td>
+            <td tabindex="0" class="sorting_1" th:text="${plan.chcDesc}">chcDesc</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</div>
+<div class="row">
+    <div class="col-sm-5">
+        <!--                        <div class="dataTables_info" id="datatable-responsive_info"-->
+        <!--                             role="status" aria-live="polite">共<span th:text="${chancePage.total}">1</span>条记录-->
+        <!--                            <span th:text="${chancePage.current}">1</span>/<span-->
+        <!--                                    th:text="${chancePage.pages}">5</span>页-->
+        <!--                        </div>-->
+    </div>
+    <div class="col-sm-7">
+        <div class="dataTables_paginate paging_simple_numbers"
+             id="datatable-responsive_paginate">
+            <ul class="pagination">
+                <li class="paginate_button previous"><a
+                        href="javascript:page_nav(document.forms[0],1);"
+                        aria-controls="datatable-responsive" data-dt-idx="0"
+                        tabindex="0">首页</a>
+                </li>
+                <li class="paginate_button "><a
+                        href="#"
+                        aria-controls="datatable-responsive" data-dt-idx="1"
+                        tabindex="0">上一页</a>
+                </li>
+                <li class="paginate_button "><a
+                        href="#"
+                        aria-controls="datatable-responsive" data-dt-idx="2"
+                        tabindex="0">下一页</a>
+                </li>
+                <li class="paginate_button next"><a
+                        href="#"
+                        aria-controls="datatable-responsive" data-dt-idx="7"
+                        tabindex="0">最后一页</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.LikesDao">
+    <!--    //根据微博id获取微博的点赞数目-->
+    <!--    public int getLikeCountByBid(int bid) throws SQLException;-->
+    <select id="getLikeCountByBid" parameterType="int" resultType="int">
+        select count(*) from likes where bid = #{bid}
+    </select>
+    <!--    //删除某条微博的所有点赞-->
+    <!--    public int deleteLikesByBid(int bid) throws SQLException;-->
+    <select id="deleteLikesByBid" parameterType="int" resultType="int">
+        delete from likes where bid= #{bid}
+    </select>
+    <!--    //分页获取我的赞列表-->
+    <!--    public List<Blog> getLikeBlogsByPage(@Param("uid") int uid, @Param("keyword")String keyword, @Param("pageNo")int pageNo,@Param("pageSize") int pageSize) throws SQLException;-->
+    <select id="getLikeBlogsByPage" resultType="int">
+        select b1.id, b1.uid, b1.content, b1.images, b1.time, b1.state, u1.nickname as u_nickname, u1.image as u_image,
+        b2.content as f_content, b2.images as f_images,
+        u2.nickname as f_nickname from
+        (select * from blog where id in (select bid from likes where uid = ?)) b1 left join blog b2 on b1.fromBid =
+        b2.id
+        left join user u1 on b1.uid = u1.id left join user u2 on b2.uid = u2.id
+        <if test="keyword neq null and keyword neq ''">
+            where b1.content like concat('%',#{keyword},'%') or b2.content like concat('%',#{keyword},'%')
+        </if>
+        order by b1.time desc LIMIT #{pageNo}, #{pageSize}
+    </select>
+    <!--    //获取我的赞总数-->
+    <!--    public int getLikesCountByUidAndKeyword(@Param("uid")int uid, @Param("keyword")String keyword) throws SQLException;-->
+    <select id="getLikesCountByUidAndKeyword" resultType="int">
+        select count(*) from (select b1.id, b1.uid, b1.content, b1.fromBid
+        from likes l
+        left join blog b1 on l.bid = b1.id and l.uid = #{uid}) as r
+        left join blog b2 on r.fromBid = b2.id
+        where r.content like concat('%',#{keyword},'%') or b2.content like concat('%',#{keyword},'%') ";
+    </select>
+    <!--    //点赞一条微博-->
+    <!--    public int addLikes(Likes likes,String now) throws SQLException;-->
+    <insert id="addLikes">
+        insert into likes(uid,bid,time) values(#{uid},#{bid},#{now})
+    </insert>
+    <!--    //查询是否已点赞该微博-->
+    <!--    public Likes findLikes(@Param("uid")int uid, @Param("bid")int bid) throws SQLException;-->
+    <select id="findLikes" resultType="Likes">
+        select * from likes where uid = #{uid} and bid = #{bid}
+    </select>
+    <!--    //取消点赞-->
+    <!--    public int deleteLikes(Likes likes) throws SQLException;-->
+    <delete id="deleteLikes">
+        delete from likes where uid = #{uid} and bid = #{bid}
+    </delete>
+</mapper>

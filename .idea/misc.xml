@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/724" />
+    <file type="web" url="file://$PROJECT_DIR$/framefoundation" />
+    <file type="web" url="file://$PROJECT_DIR$/microblog" />
+    <file type="web" url="file://$PROJECT_DIR$/oasys" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm/sch01" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm/sch02" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm/sch04" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm/sch05" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm/sch06" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm/sch07" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm/sch08" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm/sch09" />
+    <file type="web" url="file://$PROJECT_DIR$/ssm/sch10" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/framefoundation/pom.xml" />
+        <option value="$PROJECT_DIR$/724/pom.xml" />
+        <option value="$PROJECT_DIR$/crm/pom.xml" />
+        <option value="$PROJECT_DIR$/microblog/pom.xml" />
+        <option value="$PROJECT_DIR$/oasys/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/boot1/pom.xml" />
+        <option value="$PROJECT_DIR$/sp/sss/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/boot2/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/boot3-mybatis/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/boot3/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/boot4/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/boot5/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/boot6/pom.xml" />
+        <option value="$PROJECT_DIR$/ssm/pom.xml" />
+        <option value="$PROJECT_DIR$/ssm/sch09/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/boot7/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/boot8/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="false" project-jdk-name="8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

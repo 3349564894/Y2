@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+    
+">
+    <!--    扫描含有注解的包-->
+    <!--    使用spring配置数据源-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close" autowire="byName">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/cvs_db?useUnicode=true&amp;characterEncoding=utf8&amp;useSSL=true&amp;&amp;serverTimezone=GMT"/>
+        <property name="username" value="root"/>
+        <property name="password" value="2004923yq"/>
+    </bean>
+
+    <!--        定义事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+
+    </bean>
+    <!--    注解方式使用事务-->&amp;
+    <tx:annotation-driven/>
+    <!--    设置事务属性-->
+    <!--    <tx:advice id="txAdvice">-->
+    <!--        <tx:attributes>-->
+    <!--            <tx:method name="get*" propagation="SUPPORTS"/>-->
+    <!--            <tx:method name="add*" propagation="REQUIRED"/>-->
+    <!--            <tx:method name="del*" propagation="REQUIRED"/>-->
+    <!--            <tx:method name="update*" propagation="REQUIRED"/>-->
+    <!--            <tx:method name="*" propagation="REQUIRED"/>-->
+    <!--        </tx:attributes>-->
+    <!--    </tx:advice>-->
+
+    <!--    <aop:config>-->
+    <!--        <aop:pointcut id="serviceMethod" expression="execution(* com.yq.service.*.*(..))"/>-->
+    <!--        <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>-->
+    <!--    </aop:config>-->
+
+    <!--    配置SqlSession-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:mapper/*.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--    给实现类自动注入sqlSessionFactory-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" id="mapperScannerConfigurer">
+        <property name="basePackage" value="com.yq.dao"/>
+    </bean>
+
+    <!--    <bean class="org.mybatis.spring.mapper.MapperFactoryBean">-->
+    <!--        <property name="mapperInterface" value="com.yq.dao.SysUserMapper"/>-->
+    <!--        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+    <!--    </bean>-->
+
+    <!--    配置SqlSessionTemplate-->
+    <!--    <bean class="org.mybatis.spring.SqlSessionTemplate" id="sqlSessionTemplate">-->
+    <!--        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+    <!--    </bean>-->
+
+    <!--    向SqlSessionDaoSupport中赋对象-->
+    <!--    <bean id="sysUserMapper" class="com.yq.dao.impl.SysUserMapperImpl">-->
+    <!--        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
+    <!--    </bean>-->
+
+    <!--    <bean id="sysUserService" class="com.yq.service.impl.SysUserServiceImpl">-->
+    <!--        <property name="sysUserMapper" ref="sysUserMapper"/>-->
+    <!--    </bean>-->
+</beans>

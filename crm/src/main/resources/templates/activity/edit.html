@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/localcss/crmlist.css}" href="../static/localcss/crmlist.css" rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+        <div class="clearfix"></div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-sm-12">
+                    <h5>编辑交往记录:</h5>
+
+
+                    <form method="post" action="/activity/add" th:action="@{/activity/add}">
+
+                        <input name="atvCustNo" th:value="${activity.atvCustNo}" type="hidden">
+
+                        <input name="atvId" th:value="${activity.atvId}" type="hidden">
+                        <table
+                                class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline collapsed"
+                                cellspacing="0" width="100%" role="grid"
+                                aria-describedby="datatable-responsive_info" style="width: 100%;">
+                            <tr role="row">
+                                <th class="sorting" tabindex="0" style="width: 20%;background-color: #5bc0de"
+                                    aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                    aria-label="Last name: activate to sort column ascending">
+                                    时间
+                                </th>
+                                <td style="width: 30%;">
+                                    <input name="atvDate" type="text"
+                                           th:value="${#dates.format(activity.atvDate,'yyyy-MM-dd HH:mm:ss')}">
+                                </td>
+                                <th class="sorting_asc" tabindex="0" style="width: 20%;background-color: #5bc0de"
+                                    aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                    aria-label="First name: activate to sort column descending"
+                                    aria-sort="ascending">地点
+                                </th>
+                                <td style="width: 30%;">
+                                    <input type="text" name="atvPlace" th:value="${activity.atvPlace}">
+                                </td>
+                            </tr>
+                            <tr role="row">
+                                <th class="sorting" tabindex="0" style="width: 20%;background-color: #5bc0de"
+                                    aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                    aria-label="Last name: activate to sort column ascending">
+                                    概要
+                                </th>
+                                <td style="width: 30%;">
+                                    <input name="atvTitle" type="text" th:value="${activity.atvTitle}">
+                                </td>
+                                <th class="sorting_asc" tabindex="0" style="width: 20%;background-color: #5bc0de"
+                                    aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                    aria-label="First name: activate to sort column descending"
+                                    aria-sort="ascending">备注
+                                </th>
+                                <td style="width: 30%;">
+                                    <input name="atvRemark" type="text" th:value="${activity.atvRemark}">
+                                </td>
+                            </tr>
+                            <tr role="row">
+                                <th class="sorting" tabindex="0" style="width: 20%;background-color: #5bc0de"
+                                    aria-controls="datatable-responsive" rowspan="1" colspan="1"
+                                    aria-label="Last name: activate to sort column ascending">
+                                    详细信息
+                                </th>
+                                <td style="width: 30%;">
+
+                                    <textarea th:text="${activity.atvDesc}" name="atvDesc"></textarea>
+                                </td>
+
+                            </tr>
+                        </table>
+
+                        <input type="submit" value="保存">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

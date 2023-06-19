@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.yq</groupId>
+    <artifactId>ssm</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>sch01</module>
+        <module>sch02</module>
+        <module>sch05</module>
+        <module>sch06</module>
+        <module>sch07</module>
+        <module>sch08</module>
+        <module>sch09</module>
+        <module>sch10</module>
+    </modules>
+
+</project>

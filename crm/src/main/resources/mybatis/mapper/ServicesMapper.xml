@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.crm.mapper.ServiceMapper">
+
+
+    <select id="finAll" resultMap="ServicesMap">
+        select * from cst_service
+        <where>
+<!--            <if test="svr_title=='' and svr_cust_name!='' and svr_type==''">-->
+<!--                svr_cust_name like CONCAT('%',#{svr_cust_name},'%')-->
+<!--            </if>-->
+<!--            <if test="svr_title=='' and svr_cust_name!='' and svr_type==''">-->
+<!--                svr_cust_name like CONCAT('%',#{svr_cust_name},'%')-->
+<!--            </if>-->
+            <if test="svr_title!='' and svr_cust_name=='' and svr_type==''">
+                svr_title like CONCAT('%',#{svr_title},'%')
+            </if>
+            <if test="svr_title=='' and svr_cust_name!='' and svr_type==''">
+                svr_cust_name like CONCAT('%',#{svr_cust_name},'%')
+            </if>
+            <if test="svr_title=='' and svr_cust_name=='' and svr_type!=''">
+                svr_type = #{svr_type}
+            </if>
+            <if test="svr_title!='' and svr_cust_name!='' and svr_type==''">
+                svr_title like CONCAT('%',#{svr_title},'%') and svr_cust_name like CONCAT('%',#{svr_cust_name},'%')
+            </if>
+            <if test="svr_title!='' and svr_cust_name=='' and svr_type!=''">
+                svr_title like CONCAT('%',#{svr_title},'%') and  svr_type = #{svr_type}
+            </if>
+            <if test="svr_title=='' and svr_cust_name!='' and svr_type!=''">
+                svr_cust_name like CONCAT('%',#{svr_cust_name},'%') and svr_type = #{svr_type}
+            </if>
+            <if test="svr_title!=null and svr_cust_name!=null and svr_type!=null and svr_title!='' and svr_cust_name!='' and svr_type!=''">
+                svr_title like CONCAT('%',#{svr_title},'%') and svr_cust_name like CONCAT('%',#{svr_cust_name},'%') and svr_type = #{svr_type}
+            </if>
+        and 1=1
+    </where>  LIMIT #{current},#{pageSize}
+
+    </select>
+    <select id="count" resultType="int">
+        select count(1) from cst_service
+        <where>
+<!--        <if test="svr_title=='' and svr_cust_name!='' and svr_type==''">-->
+<!--            svr_cust_name like CONCAT('%',#{svr_cust_name},'%')-->
+<!--        </if>-->
+        <if test="svr_title!='' and svr_cust_name=='' and svr_type==''">
+            svr_title like CONCAT('%',#{svr_title},'%')
+        </if>
+        <if test="svr_title=='' and svr_cust_name!='' and svr_type==''">
+            svr_cust_name like CONCAT('%',#{svr_cust_name},'%')
+        </if>
+        <if test="svr_title=='' and svr_cust_name=='' and svr_type!=''">
+            svr_type = #{svr_type}
+        </if>
+        <if test="svr_title!='' and svr_cust_name!='' and svr_type==''">
+            svr_title like CONCAT('%',#{svr_title},'%') and svr_cust_name like CONCAT('%',#{svr_cust_name},'%')
+        </if>
+        <if test="svr_title!='' and svr_cust_name=='' and svr_type!=''">
+            svr_title like CONCAT('%',#{svr_title},'%') and  svr_type = #{svr_type}
+        </if>
+        <if test="svr_title=='' and svr_cust_name!='' and svr_type!=''">
+            svr_cust_name like CONCAT('%',#{svr_cust_name},'%') and svr_type = #{svr_type}
+        </if>
+        <if test="svr_title!=null and svr_cust_name!=null and svr_type!=null and svr_title!='' and svr_cust_name!='' and svr_type!=''">
+            svr_title like CONCAT('%',#{svr_title},'%') and svr_cust_name like CONCAT('%',#{svr_cust_name},'%') and svr_type = #{svr_type}
+        </if>
+        and 1=1
+    </where>
+    </select>
+
+    <select id="findId" resultMap="ServicesMap">
+        select * from cst_service where svr_id=#{id}
+    </select>
+
+    <update id="updaService" parameterType="com.example.crm.entity.Services">
+        update cst_service
+        <trim prefix="set" prefixOverrides="," suffix="where svr_id=1">
+            <if test="svrType!=null">`svr_type`=#{svrType},</if>
+            <if test="svrTitle!=null">svr_title=#{svrTitle},</if>
+            <if test="svrCustNo!=null">svr_cust_no=#{svrCustNo},</if>
+            <if test="svrCustName!=null">svr_cust_name=#{svrCustName},</if>
+            <if test="svrStatus!=null">svr_status=#{svrStatus},</if>
+            <if test="svrRequest!=null">svr_request=#{svrRequest},</if>
+            <if test="svrCreateId!=null">svr_create_id=#{svrCreateId},</if>
+            <if test="svrCreateBy!=null">svr_create_by=#{svrCreateBy},</if>
+            <if test="svrCreateDate!=null">svr_create_date=#{svrCreateDate},</if>
+            <if test="svrDueId!=null">svr_due_id=#{svrDueId},</if>
+            <if test="svrDueTo!=null">svr_due_to=#{svrDueTo},</if>
+            <if test="svrDueDate!=null">svr_due_date=#{svrDueDate},</if>
+            <if test="svrDeal!=null">svr_deal=#{svrDeal},</if>
+            <if test="svrDealId!=null">svr_deal_id=#{svrDealId},</if>
+            <if test="svrDealBy!=null">svr_deal_by=#{svrDealBy},</if>
+            <if test="svrDealDate!=null">svr_deal_date=#{svrDealDate},</if>
+            <if test="svrResult!=null">svr_result=#{svrResult}</if>
+            <if test="svrSatisfy!=null">svr_satisfy=#{svrTitle}</if>
+        </trim>
+    </update>
+
+    <insert id="addService" parameterType="com.example.crm.entity.Services">
+        insert  into cst_service(svr_type,svr_title,svr_cust_name,svr_status,svr_request,svr_create_by,svr_create_date)
+        values(#{svrType},#{svrTitle},#{svrCustName},#{svrStatus},#{svrRequest},#{svrCreateBy},#{svrCreateDate})
+    </insert>
+
+    <delete id="delServices">
+        delete from cst_service where svr_id=#{id}
+    </delete>
+
+    <update id="updServiceTo" >
+        update cst_service set svr_due_id=#{dueId},svr_due_to=#{dueTo} where svr_id=#{id}
+    </update>
+
+    <resultMap id="ServicesMap" type="Services">
+        <id property="svrId" column="svr_id"/>
+        <result property="svrType" column="svr_type"/>
+        <result property="svrTitle" column="svr_title"/>
+        <result property="svrCustNo" column="svr_cust_no"/>
+        <result property="svrCustName" column="svr_cust_name"/>
+        <result property="svrStatus" column="svr_status"/>
+        <result property="svrRequest" column="svr_request"/>
+        <result property="svrCreateId" column="svr_create_id"/>
+        <result property="svrCreateBy" column="svr_create_by"/>
+        <result property="svrCreateDate" column="svr_create_date"/>
+        <result property="svrDueId" column="svr_due_id"/>
+        <result property="svrDueTo" column="svr_due_to"/>
+        <result property="svrDueDate" column="svr_due_date"/>
+        <result property="svrDeal" column="svr_deal"/>
+        <result property="svrDealId" column="svr_deal_id"/>
+        <result property="svrDealBy" column="svr_deal_by"/>
+        <result property="svrDealDate" column="svr_deal_date"/>
+        <result property="svrResult" column="svr_result"/>
+        <result property="svrSatisfy" column="svr_satisfy"/>
+    </resultMap>
+</mapper>

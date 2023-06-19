@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.CollectionDao">
+    <!--    //根据微博id获取微博的收藏数目-->
+    <!--    public int getCollectionCountByBid(int bid) throws SQLException;-->
+    <select id="getCollectionCountByBid" resultType="int" parameterType="int">
+        select count(*) from collection where bid = #{bid}
+    </select>
+    <!--    //收藏一条微博-->
+    <!--    public int addCollection(Collection collection) throws SQLException;-->
+    <insert id="addCollection">
+        insert into collection(uid,bid,time) values(#{uid},#{bid},#{now})
+    </insert>
+    <!--    //查询是否已收藏该微博-->
+    <!--    public Collection findCollection(int uid, int bid) throws SQLException;-->
+    <select id="findCollection" resultType="Collection_">
+        select * from collection where uid = #{uid} and bid = #{bid}
+    </select>
+    <!--    //取消收藏-->
+    <!--    public int deleteCollection(Collection collection) throws SQLException;-->
+    <delete id="deleteCollection">
+        delete from collection where uid = #{uid} and bid = #{bid}
+    </delete>
+    <!--    //删除某条微博的收藏记录-->
+    <!--    public int deleteCollectionByBid(int bid) throws SQLException;-->
+    <delete id="deleteCollectionByBid" parameterType="int">
+        delete from collection where bid = #{bid}
+    </delete>
+    <!--    //根据用户id和搜索关键字统计收藏的微博总数-->
+    <!--    public int getCollectionCountByUidAndKeyword(int uid, String keyword) throws SQLException;-->
+    <select id="getCollectionCountByUidAndKeyword" resultType="int" parameterType="int">
+        select count(*) from (select b1.id, b1.uid, b1.content, b1.fromBid from collection c
+        left join blog b1 on c.bid = b1.id and c.uid = #{uid}) as r
+        left join blog b2 on r.fromBid = b2.id
+        where r.content like concat('%',#{keyword},'%') or b2.content like concat('%',#{keyword},'%')
+    </select>
+    <!--    //分页获取收藏列表-->
+    <!--    public List<Blog> getCollectionsByPage(int uid, String keyword, int pageNo, int pageSize) throws SQLException;-->
+    <select id="getCollectionsByPage" resultType="Blog">
+        select b1.id, b1.uid, b1.content, b1.images, b1.time, b1.state, u1.nickname as u_nickname, u1.image as u_image,
+        b2.content, b2.images,
+        u2.nickname as f_nickname, u2.image as f_image
+        from (select * from blog where id in (select bid from collection where uid = #{uid})) b1
+        left join blog b2 on b1.fromBid = b2.id
+        left join user u1 on b1.uid = u1.id
+        left join user u2 on b2.uid = u2.id
+        <if test="#{keyword} neq null and #{keyword} neq ''">
+            where b1.content like concat('%',#{keyword},'%') or b2.content like concat('%',#{keyword},'%')
+        </if>
+        order by b1.time desc LIMIT #{pageNo}, #{pageSize}
+    </select>
+</mapper>

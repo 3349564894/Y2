@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yq.oa.dao.AttendanceDao">
+
+    <!--    //删除员工的所有考勤记录-->
+    <!--    public int deleteAttendanceByEmployeeId(int employeeId) throws SQLException;-->
+    <delete id="deleteAttendanceByEmployeeId">
+        delete from attendance where employeeId=#{employeeId}
+    </delete>
+
+    <!--    //查找打卡记录-->
+    <!--    public Attendance getRecordByEmployeeIdAndDate(int employeeId, String date) throws SQLException;-->
+    <select id="getRecordByEmployeeIdAndDate" resultType="Attendance">
+        select * from attendance where employeeId = #{employeeId} and DATEDIFF(#{date}, signInTime)=0
+    </select>
+
+    <!--    //上班打卡-->
+    <!--    public int addSinginByEmployeeId(int employeeId,String now) throws SQLException;-->
+    <insert id="addSinginByEmployeeId">
+        insert into attendance(employeeId, signInTime) values(#{employeeId}, #{now})
+    </insert>
+
+    <!--    //根据考勤id记录签退-->
+    <!--    public int updateSingoutByAttendanceId(int id,String now) throws SQLException;-->
+    <update id="updateSingoutByAttendanceId">
+        update attendance set signOutTime = #{now} where id = #{id}
+    </update>
+
+    <!--    //获取考勤记录-->
+    <!--    public List<Attendance> getAttendancesByPage(String name, String searchDate, int pageNo, int pageSize) throws SQLException;-->
+    <select id="getAttendancesByPage" resultType="int">
+        select a.id, e.name, e.employeeNo, a.signInTime, a.signOutTime from attendance a
+        left join employee e on a.employeeId = e.id
+        <where>
+            <if test="#{name}!=null and #{name}!='' and #{searchDate}!=null and #{searchDate}!=''">
+                e.name like concat('%',#{name},'%') and DATEDIFF(#{searchDate}, a.signInTime)=0
+            </if>
+            <if test="#{name}!=null and #{name}!=''">
+                and e.name like concat('%',#{name},'%')
+            </if>
+            <if test="#{searchDate}!=null and #{searchDate}!=''">
+                and DATEDIFF(#{searchDate}, a.signInTime)=0
+            </if>
+        </where>
+        LIMIT #{pageNo},#{pageSize}
+    </select>
+
+    <!--    //获取记录总数-->
+    <!--    public int getAttendancesCount(String name, String searchDate) throws SQLException;-->
+    <select id="getAttendancesCount" resultType="int">
+        select count(*) from attendance a left join employee e on a.employeeId = e.id
+        <where>
+            <if test="#{name}!=null and #{name}!='' and #{searchDate}!=null and #{searchDate}!=''">
+                e.name like concat('%',#{name},'%') and DATEDIFF(#{searchDate}, a.signInTime)=0
+            </if>
+            <if test="#{name}!=null and #{name}!=''">
+                and e.name like concat('%',#{name},'%')
+            </if>
+            <if test="#{searchDate}!=null and #{searchDate}!=''">
+                and DATEDIFF(#{searchDate}, a.signInTime)=0
+            </if>
+        </where>
+    </select>
+</mapper>

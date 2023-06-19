@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.crm.mapper.CustomerMapper">
+    <select id="finNameAndRegion" resultType="com.example.crm.entity.Customer">
+        select * from cst_customer <where>
+        <if test="name!=null and region!=null and name!='' and region!=''">
+            cust_name like CONCAT('%',#{name},'%') and cust_region = #{region}
+        </if>
+        <if test="name!='' and region==''">
+             cust_name like CONCAT('%',#{name},'%')
+        </if>
+        <if test="region!='' and name==''">
+             cust_region = #{region}
+        </if>
+         and   1=1
+    </where> LIMIT #{current},#{pageSize}
+    </select>
+
+    <select id="count" resultType="int">
+        select count(1) from cst_customer
+        <where>
+        <if test="name!=null and region!=null and name!='' and region!=''">
+            cust_name like CONCAT('%',#{name},'%') and cust_region = #{region}
+        </if>
+        <if test="name!='' and region==''">
+             cust_name like CONCAT('%',#{name},'%')
+        </if>
+        <if test="region!='' and name==''">
+             cust_region = #{region}
+        </if>
+        and   1=1
+    </where>
+    </select>
+
+<select id="findCustomer" resultType="Customer" parameterType="string">
+select * from cst_customer where cust_no = #{custNo,jdbcType=VARCHAR};
+</select>
+
+<update id="update" parameterType="Customer">
+update cst_customer set
+cust_name = #{cust_name},
+cust_region = #{cust_region},
+cust_manager_id = #{cust_manager_id},
+cust_manager_name = #{cust_manager_name},
+cust_level = #{cust_level},
+cust_level_label =
+<choose>
+<when test="cust_level == 1">'小客户'</when>
+<when test="cust_level == 2">'中客户'</when>
+<when test="cust_level == 3">'大客户'</when>
+<when test="cust_level == 4">'合作伙伴'</when>
+<when test="cust_level == 5">'战略合作伙伴'</when>
+</choose>
+,
+cust_satisfy = #{cust_satisfy},
+cust_credit = #{cust_credit},
+cust_addr = #{cust_addr},
+cust_zip = #{cust_zip},
+cust_tel = #{cust_tel},
+cust_fax = #{cust_fax},
+cust_website = #{cust_website},
+cust_licence_no = #{cust_licence_no},
+cust_chieftain = #{cust_chieftain},
+cust_bankroll = #{cust_bankroll},
+cust_turnover = #{cust_turnover},
+cust_bank = #{cust_bank},
+cust_bank_account = #{cust_bank_account},
+cust_local_tax_no = #{cust_local_tax_no},
+cust_national_tax_no = #{cust_national_tax_no}
+ where cust_no = #{cust_no};
+</update>
+
+    <delete id="delete1" parameterType="string"
+    >
+    delete from cst_activity where atv_cust_no = #{custNo}
+</delete>
+<delete id="delete2" parameterType="string"
+    >
+    delete from cst_linkman where lkm_cust_no = #{custNo}
+</delete>
+<delete id="delete3" parameterType="string"
+    >
+    delete from cst_lost where lst_cust_no = #{custNo}
+</delete>
+<delete id="delete4" parameterType="string"
+    >
+    delete from cst_service where svr_cust_no = #{custNo}
+</delete>
+<delete id="delete5" parameterType="string"
+    >
+    delete from cst_customer where cust_no = #{custNo}
+</delete>
+<!--<insert id="add">-->
+<!--    insert into cst_customer()-->
+<!--</insert>-->
+</mapper>

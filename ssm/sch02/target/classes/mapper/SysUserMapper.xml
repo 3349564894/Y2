@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.sysuser.SysUserMapper">
+    <!--    /**-->
+    <!--    * 根据用户的真实姓名模糊查询-->
+    <!--    * @param realName-->
+    <!--    * @return-->
+    <!--    */-->
+    <select id="getUserByRealName" resultType="sysuser" parameterType="string">
+        select * from `t_sys_user` where realName like concat('%',#{realName},'%')
+    </select>
+
+    <!--    /**-->
+    <!--    * 使用对象查询用户信息-->
+    <!--    * @param sysUser-->
+    <!--    * @return-->
+    <!--    */-->
+    <select id="getUserListByPojo" resultType="sysuser" parameterType="sysuser">
+        select * from `t_sys_user` where realName like concat('%',#{realName},'%') and roleId = #{roleId}
+    </select>
+
+    <!--    /**-->
+    <!--    * 使用map查询用户信息-->
+    <!--    * @param map-->
+    <!--    * @return-->
+    <!--    */-->
+    <select id="getUserLisetByMap" resultType="sysuser" parameterType="map">
+        select * from `t_sys_user` where realName like concat('%',#{realName},'%') and roleId = #{roleId}
+    </select>
+
+    <!--    /**-->
+    <!--    * 使用注解-->
+    <!--    * @param realName-->
+    <!--    * @param roleId-->
+    <!--    * @return-->
+    <!--    */-->
+    <select id="getUserLisetByParams" resultType="sysuser">
+        select * from `t_sys_user` where realName like concat('%',#{rname},'%') and roleId = #{rid}
+    </select>
+
+    <resultMap id="UserListWithRoleName" type="sysuser">
+        <id property="id" column="id"></id>
+        <result property="userRoleName" column="roleName"/>
+        <result property="supplierName" column="supName"/>
+    </resultMap>
+    <!--    /**-->
+    <!--    * 查询用户信息及角色、供货商-->
+    <!--    * @param sysUser-->
+    <!--    * @return-->
+    <!--    */-->
+    <select id="getUserListWithRoleName" resultType="sysuser" resultMap="UserListWithRoleName">
+        select u.*,r.roleName as roleName,ts.supName as supName
+        from `t_sys_user` u,t_sys_role r,t_storage_record tsr,t_supplier ts
+        where u.realName like concat('%',#{realName},'%')
+        and u.roleId = #{roleId}
+        and u.roleId = r.id
+        and ts.id = tsr.supplierId
+        and tsr.createdUserId = u.id
+        and ts.id = tsr.supplierId
+    </select>
+
+    <!--    /**-->
+    <!--    * 根据id查询用户、包含系统角色-->
+    <!--    * @param roleId-->
+    <!--    * @return-->
+    <!--    */-->
+    <resultMap id="userWithSysRole" type="sysuser">
+        <id property="id" column="id"></id>
+        <result property="realName" column="realName"/>
+        <association property="sysRole" javaType="sysrole">
+            <id property="id" column="id"/>
+            <result property="code" column="code"/>
+            <result property="roleName" column="roleName"/>
+        </association>
+    </resultMap>
+    <select id="getUserListByRoleId" resultType="sysuser" resultMap="userWithSysRole">
+        select u.*,r.id as rid,r.code,r.roleName
+        from `t_sys_user` u,t_sys_role r
+        where u.roleId = #{roleId} and u.roleId = r.id
+    </select>
+
+    <!--    /**-->
+    <!--    * 根据id查询用户、包含系统角色、地址-->
+    <!--    * @param userId-->
+    <!--    * @return-->
+    <!--    */-->
+    <!--    List<SysUser> getUserAndAddressesByUserId(Integer userId);-->
+    <resultMap id="userWithAddresses" type="sysuser">
+        <id property="id" column="id"/>
+        <result property="account" column="account"/>
+        <result property="realName" column="realName"/>
+        <collection property="addressList" ofType="address">
+            <id property="id" column="aid"/>
+            <result property="contact" column="contact"/>
+            <result property="addressDesc" column="addressDesc"/>
+            <result property="postCode" column="postCode"/>
+            <result property="tel" column="tel"/>
+        </collection>
+    </resultMap>
+    <select id="getUserAndAddressesByUserId" resultType="sysuser" resultMap="userWithAddresses">
+        select u.*,a.id aid,a.contact,a.addressDesc,a.postCode,a.tel
+        from `t_sys_user` u,t_address a
+        where u.id = a.userId and u.id = #{userId}
+    </select>
+</mapper>

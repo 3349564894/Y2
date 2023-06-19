@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yq.oa.dao.EmployeeDao">
+    <!--    //查找员工-->
+    <!--    public Employee findEmployee(String employeeNo, String password) throws SQLException;-->
+    <select id="findEmployee" resultType="Employee">
+        select e.id,employeeNo,password,name,email,deptId,entryTime,positionId,photo,posName as position,deptName as
+        department from employee e left join position p on e.positionId = p.id
+        left join department d on e.deptId = d.id
+        where employeeNo = #{employeeNo} and password = #{password}
+    </select>
+
+    <!--    //获取员工列表-->
+    <!--    public List<Employee> getEmployeesByPage(@Param("name") String name, @Param("offset") int offset, @Param("pageSize") int pageSize) throws SQLException;-->
+    <select id="getEmployeesByPage" resultType="Employee">
+        select e.id,employeeNo,password,name,email,deptId,entryTime,positionId,photo,posName as position,deptName as
+        department from employee e
+        left join position p on e.positionId = p.id
+        left join department d on e.deptId = d.id
+        <where>
+            <if test="#{name} != null and !#{name}.equals('')">
+                and name like concat('%', #{name} '%')
+            </if>
+        </where>
+        order by e.id desc LIMIT #{offset},#{pageSize}
+    </select>
+
+    <!--    //获取员工总数-->
+    <!--    public int getEmployeesCount(String name) throws SQLException;-->
+    <select id="getEmployeesCount" resultType="int" parameterType="string">
+        select count(*) as count from employee
+        <where>
+            <if test="#{name} != null and !#{name}.equals('')">
+                name like concat('%', #{name} '%')
+            </if>
+        </where>
+    </select>
+
+    <!--    //修改员工信息-->
+    <!--    public int updateEmployee(Employee employee) throws SQLException;-->
+    <update id="updateEmployee" parameterType="Employee">
+        update employee
+        set
+        employeeNo=#{employeeNo},
+        name=#{name},
+        email=#{email},
+        entryTime=#{entryTime},
+        photo=#{photo},
+        deptId=#{deptId},
+        positionId=#{positionId}
+        where id=#{id}
+    </update>
+
+    <!--    //新增员工-->
+    <!--    public int addNewEmployee(Employee employee) throws SQLException;-->
+    <insert id="addNewEmployee" parameterType="Employee">
+        insert into employee (employeeNo, password, name, email, entryTime, photo, deptId,positionId)
+        VALUES (#{employeeNo},#{password},#{name},#{email},#{entryTime},#{photo},#{deptId},#{positionId})
+    </insert>
+
+    <!--    //根据ID获取员工信息-->
+    <!--    public Employee getEmployeeById(int id) throws SQLException;-->
+    <select id="getEmployeeById" resultType="Employee" parameterType="int">
+        select e.id,employeeNo,password,name,email,deptId,entryTime,positionId,photo,posName as position,deptName as
+        department from employee e left join position p on e.positionId = p.id left join department d on e.deptId = d.id
+        where e.id = #{id}
+    </select>
+
+    <!--    //根据工号查询-->
+    <!--    public int getEmployeeByNo(String employeeNo) throws SQLException;-->
+    <select id="getEmployeeByNo" resultType="int" parameterType="string">
+        select count(*) from employee where employeeNo=#{employeeNo}
+    </select>
+
+    <!--    //删除员工-->
+    <!--    public int deleteEmployeeById(int id) throws SQLException;-->
+    <delete id="deleteEmployeeById" parameterType="int">
+        delete from employee where id = #{id}
+    </delete>
+
+    <!--    //更新用户密码-->
+    <!--    public int updatePasswordById(int id, String pwd) throws SQLException;-->
+    <update id="updatePasswordById">
+        update employee set password = #{pwd} where id = #{id}
+    </update>
+</mapper>

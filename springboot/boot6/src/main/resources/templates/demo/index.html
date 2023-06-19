@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout/test :: head(~{::title},~{::link})">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div th:insert="/layout/footer :: copyright"></div>
+<div th:replace="/layout/footer :: copyright"></div>
+</body>
+</html>

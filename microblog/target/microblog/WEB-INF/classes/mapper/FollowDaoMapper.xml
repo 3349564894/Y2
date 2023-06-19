@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.FollowDao">
+    <!--    //统计关注人数目-->
+    <!--    public int getFollowedCount(int uId) throws SQLException;-->
+    <select id="getFollowedCount" parameterType="int" resultType="int">
+        select count(*) from follow where uid=#{uId}
+    </select>
+    <!--    //统计粉丝数-->
+    <!--    public int getFansCount(int uId) throws SQLException;-->
+    <select id="getFansCount" parameterType="int" resultType="int">
+        select count(*) from follow where followedUid = #{uId}
+    </select>
+    <!--    //获取关注列表-->
+    <!--    public List<User> getFollowedByUidAndKeyword(@Param("uId") int uId,@Param("keyword") String keyword) throws SQLException;-->
+    <select id="getFollowedByUidAndKeyword" parameterType="int" resultType="User">
+        select user.id, user.nickname, user.sign, user.image, user.address
+        from follow
+        inner join user on follow.followedUid=user.id
+        where follow.uid=#{uId} and user.nickname
+        like concat('%',#{keyword},'%')
+    </select>
+    <!--    //获取粉丝列表-->
+    <!--    public List<User> getFansByUidAndKeyword(@Param("uId")int uId,@Param("keyword") String keyword) throws SQLException;-->
+    <select id="getFansByUidAndKeyword" parameterType="int" resultType="User">
+        select user.id, user.nickname, user.sign, user.image, user.address
+        from follow
+        inner join user
+        where follow.followedUid = #{uId}
+        and follow.uid=user.id
+        and user.nickname
+        like concat('%',#{keyword},'%')
+    </select>
+    <!--    //查询uId 对象是否已关注followerId对象-->
+    <!--    public boolean isFollowed(@Param("uId")int uId,@Param("followedUid") int followedUid) throws SQLException;-->
+    <select id="isFollowed" parameterType="int" resultType="int">
+        select * from follow where uid= #{uId} and followedUid=#{followedUid}
+    </select>
+    <!--    //加关注-->
+    <!--    public int addFollower(Follow follow) throws SQLException;-->
+    <insert id="addFollower" parameterType="int">
+        insert into follow(uid,followedUid) values(#{uid},#{followerId})
+    </insert>
+    <!--    //取消关注-->
+    <!--    public int deleteFollower(Follow follow) throws SQLException;-->
+    <delete id="deleteFollower" parameterType="int">
+        delete from follow where uid = #{uid} and followedUid = #{followerId}
+    </delete>
+</mapper>

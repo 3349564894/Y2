@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <title>销售机会管理</title>
+    <link th:href="@{/localcss/crmlist.css}" href="../static/localcss/crmadd.css" rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>客户流失管理 <i class="fa fa-user"></i></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="clearfix"></div>
+                        <form class="form-horizontal form-label-left" th:action="@{/lost/edit/update}"
+                              action="/chance/edit"
+                              method="post">
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> 编号
+
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12" name="lst_id" th:text="${lost.lst_id}">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> 客户名称
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12" th:text="${lost.lst_cust_name}">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> 客户经理
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12" th:text="${lost.lst_cust_manager_name}">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> 上次下单时间
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12" th:text="${lost.lst_last_order_date}">
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> 确认流失时间
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12" th:text="${lost.lst_lost_date}">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> 暂缓措施
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12" th:text="${lost.lst_delay}">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="chcDesc"> 追加暂缓措施
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea id="chcDesc" class="form-control col-md-7 col-xs-12"
+                                          data-validate-length-range="10" data-validate-words="1"
+                                          name="lst_delay"></textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <button id="send" type="submit" class="btn btn-success">保存</button>
+                                    <button type="button" class="btn btn-primary" id="back">返回</button>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script layout:fragment="js">
+    $(document).ready(function () {
+        $("#back").on("click", function () {
+            window.history.back();
+        });
+    });
+</script>
+</html>

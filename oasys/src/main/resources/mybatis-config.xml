@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--引入包含数据库参数的database.properties文件-->
+    <properties resource="database.properties"/>
+    <!--1、设置MyBatis框架的运行时行为-->
+    <settings>
+        <!--        使用Log4j作为MyBatis框架的日志实现-->
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+    <!--    设置别名-->
+    <typeAliases>
+        <typeAlias type="yq.oa.entity.Attendance" alias="Attendance"/>
+        <typeAlias type="yq.oa.entity.Department" alias="Department"/>
+        <typeAlias type="yq.oa.entity.Employee" alias="Employee"/>
+        <typeAlias type="yq.oa.entity.Position" alias="Position"/>
+    </typeAliases>
+    <!--配置MyBatis运行环境-->
+    <environments default="development">
+        <environment id="development">
+            <!--配置事务管理器，采用JDBC事务，由应用自行管理事务-->
+            <transactionManager type="JDBC"></transactionManager>
+            <!--配置数据源-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mapper/EmployeeMapper.xml"/>
+        <mapper resource="mapper/AttendanceMapper.xml"/>
+        <mapper resource="mapper/DepartmentMapper.xml"/>
+        <mapper resource="mapper/PositionMapper.xml"/>
+    </mappers>
+
+</configuration>

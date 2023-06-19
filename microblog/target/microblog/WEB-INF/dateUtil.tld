@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<taglib xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+        version="2.1">
+    <tlib-version>1.0</tlib-version>
+    <short-name>util</short-name>
+    <uri>http://mycompany.com</uri>
+    <function><!--自定义方法-->
+        <!-- 方法的名称，即JSP页面中使用的名称 -->
+        <name>getFormatTime</name>
+        <!-- 指定执行的类 -->
+        <function-class>com.yq.util.DateUtil</function-class>
+        <!-- 指定执行的方法。方法名称必须和类中的方法名称保持一致。注意，当方法有参数和返回值时：参数和返回值必须写类全名（除了基本数据类型）-->
+        <function-signature>java.lang.String getFormatTime( java.util.Date )</function-signature>
+    </function>
+</taglib>

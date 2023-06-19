@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <bean id="a4Paper" class="dao.impl.TextPaper">
+        <property name="charPerLine" value="10"/>
+        <property name="linePerPage" value="8"/>
+    </bean>
+    <bean id="b5Paper" class="dao.impl.TextPaper">
+        <property name="charPerLine" value="6"/>
+        <property name="linePerPage" value="5"/>
+    </bean>
+    <bean id="colorInk" class="dao.impl.ColorInk"/>
+    <bean id="greyInk" class="dao.impl.GreyInk"/>
+    <bean id="printer" class="dao.impl.Printer">
+        <property name="ink" ref="colorInk"></property>
+        <property name="paper" ref="b5Paper"></property>
+    </bean>
+</beans>

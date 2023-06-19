@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+    
+">
+
+    <!--    扫描含有注解的包-->
+    <context:component-scan base-package="com.yq.controller,com.yq.dao,com.yq.service"/>
+    <!--获取数据库配置文件-->
+    <context:property-placeholder location="classpath:database.properties"/>
+    <!--    获取数据源-->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${mysql.driver}"/>
+        <property name="url" value="${mysql.url}"/>
+        <property name="username" value="${mysql.username}"/>
+        <property name="password" value="${mysql.password}"/>
+        <property name="minIdle" value="${minIdle}"/>
+        <property name="maxIdle" value="${maxIdle}"/>
+        <property name="maxActive" value="${maxActive}"/>
+        <property name="maxWait" value="${maxWait}"/>
+        <property name="removeAbandoned" value="${removeAbandoned}"/>
+        <property name="removeAbandonedTimeout" value="${removeAbandonedTimeout}"/>
+        <!--        sql心跳-->
+        <property name="testWhileIdle" value="true"/>
+        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
+        <property name="testOnReturn" value="false"/>
+        <property name="testOnBorrow" value="false"/>
+        <property name="validationQuery" value="select 1"/>
+        <property name="numTestsPerEvictionRun" value="${maxActive}"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath:mappers/*.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--    扫描basePackage值的所有的接口，并动态生成实现类-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" id="mapperScannerConfigurer">
+        <property name="basePackage" value="com.yq.dao"/>
+    </bean>
+
+    <!--    事务管理-->
+    <!--    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+    <!--        <property name="dataSource" ref="dataSource"/>-->
+    <!--    </bean>-->
+    <!--    <aop:aspectj-autoproxy/>-->
+    <!--    <aop:config proxy-target-class="true">-->
+    <!--        <aop:pointcut id="transService" expression="execution(* *com.yq.service..*(..))"/>-->
+    <!--        <aop:advisor advice-ref="txAdvice" pointcut-ref="transService"/>-->
+    <!--    </aop:config>-->
+    <!--    <tx:advice id="txAdvice" transaction-manager="transactionManager">-->
+    <!--        <tx:attributes>-->
+    <!--            <tx:method name="com*" propagation=""/>-->
+    <!--        </tx:attributes>-->
+    <!--    </tx:advice>-->
+</beans>

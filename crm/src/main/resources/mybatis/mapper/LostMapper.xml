@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.crm.mapper.LostMapper">
+    <select id="finNameAndName" resultType="com.example.crm.entity.Lost">
+        select * from cst_lost <where>
+        <if test="name!=null and name1!=null and name!='' and name1!=''">
+            lst_cust_name like CONCAT('%',#{name},'%') and lst_cust_manager_name = #{name1}
+        </if>
+        <if test="name!='' and name1==''">
+            lst_cust_name like CONCAT('%',#{name},'%')
+        </if>
+        <if test="name1!='' and name==''">
+            lst_cust_manager_name = #{name1}
+        </if>
+     and  1=1
+    </where>  LIMIT #{current},#{pageSize}
+    </select>
+
+    <select id="count" resultType="int">
+        select count(1) from cst_lost <where>
+        <if test="name!=null and name1!=null and name!='' and name1!=''">
+            lst_cust_name like CONCAT('%',#{name},'%') and lst_cust_manager_name = #{name1}
+        </if>
+        <if test="name!='' and name1==''">
+            lst_cust_name like CONCAT('%',#{name},'%')
+        </if>
+        <if test="name1!='' and name==''">
+            lst_cust_manager_name = #{name1}
+        </if>
+        and  1=1
+    </where>
+    </select>
+<update id="update" >
+update cst_lost set lst_delay = #{lst_delay} where lst_id = #{lst_id};
+</update>
+    <select id="finId" resultType="Lost">
+        select * from cst_lost where lst_id=#{id}
+    </select>
+</mapper>

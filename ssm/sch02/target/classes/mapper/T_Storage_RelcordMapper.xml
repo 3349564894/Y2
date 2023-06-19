@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.sysuser.T_Storage_RelcordMapper">
+    <select id="selectBlog" resultType="T_Storage_Relcord">
+        select srCode,goodsName,supplierId,totalAmount,payStatus,createdTime
+        from t_storage_record
+        <where>
+            <if test="#{goodsName} != null and #{goodsName} != ''">
+                like concat('%',#{goodsName},'%')
+            </if>
+            <if test="#{srCode} != null and #{srCode} != ''">
+                and srCode = #{srCode}
+            </if>
+            <if test="#{payStatus} != null and #{payStatus} != ''">
+                and payStatus = #{payStatus}
+            </if>
+        </where>
+    </select>
+
+    <select id="getStorageRelcordByParams" resultType="com.yq.entity.T_Storage_Relcord">
+
+    </select>
+</mapper>

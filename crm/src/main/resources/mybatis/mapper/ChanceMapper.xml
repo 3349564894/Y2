@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.crm.mapper.ChanceMapper">
+    <sql id="column">
+        chc_id,
+        chc_source,
+        chc_cust_name,
+        chc_title,
+        chc_rate,
+        chc_linkman,
+        chc_tel,
+        chc_desc,
+        chc_create_id,
+        chc_create_by,
+        chc_create_date,
+        chc_due_id,
+        chc_due_to,
+        chc_due_date,
+        chc_status
+    </sql>
+
+    <select id="findByChcCustNameAndTitle" resultType="Chance">
+        select
+        <include refid="column"/>
+         from sal_chance
+        <where>
+            <if test="name != '' and title == ''">
+                chc_cust_name like CONCAT('%',#{name},'%')
+            </if>
+            <if test="title != ''  and name == ''">
+            chc_title = #{title}
+            </if>
+            <if test="name != null and title != null and name != '' and title != ''">
+             chc_cust_name like CONCAT('%',#{name},'%') and chc_title = #{title}
+            </if>
+     and 1=1
+        </where>
+         limit #{current},#{pageSize}
+    </select>
+
+    <select id="findById" parameterType="_integer" resultType="Chance">
+
+        select
+
+
+
+        <include refid="column"/>
+
+
+
+        from sal_chance where chc_id=#{id}
+
+    </select>
+
+    <insert id="addChance" parameterType="Chance">
+
+        insert into sal_chance (chc_cust_name,chc_linkman,chc_tel,chc_desc,chc_source,chc_rate,chc_due_date,chc_due_id)
+        values
+        (#{chc_cust_name},#{chc_linkman},#{chc_tel},#{chc_title},#{chc_source},#{chc_rate},#{chc_due_data},#{chc_due_id});
+
+    </insert>
+
+    <update id="updateChance" parameterType="Chance">
+
+        update sal_chance
+
+        <trim prefix="set" prefixOverrides="," suffix="where chc_id=#{chc_id}">
+            <if test="chc_cust_name != null">
+                `chc_cust_name`=#{chc_cust_name},
+
+            </if>
+            <if test="chc_linkman != null">
+
+                chc_linkman=#{chc_linkman},
+
+            </if>
+            <if test="chc_tel != null">
+
+                chc_tel=#{chc_tel},
+
+            </if>
+            <if test="chc_title != null">
+
+                chc_title=#{chc_title},
+
+            </if>
+            <if test="chc_source != null">
+
+                chc_source=#{chc_source},
+
+            </if>
+            <if test="chc_rate != null">
+
+                chc_rate=#{chc_rate},
+
+            </if>
+            <if test="chc_due_data != null">
+
+                chc_due_data=#{chc_due_data},
+
+            </if>
+            <if test="chc_due_id != null">
+
+                chc_due_id=#{chc_due_id},
+
+            </if>
+            <if test="chc_desc != null">
+
+                chc_desc=#{chc_desc}
+            </if>
+        </trim>
+    </update>
+
+    <delete id="deleteChance" parameterType="_integer">
+
+        delete from sal_chance where chc_id=#{id}
+
+    </delete>
+
+    <select id="count" parameterType="string" resultType="_integer">
+
+        select count(1) from sal_chance
+
+
+
+        <where>
+            <if test="name != '' and title == ''">
+                chc_cust_name like CONCAT('%',#{name},'%')
+
+            </if>
+            <if test="title != ''  and name == ''">
+
+                chc_title = #{title}
+
+            </if>
+            <if test="name != null and title != null and name != '' and title != ''">
+
+                chc_cust_name like CONCAT('%',#{name},'%') and chc_title = #{title}
+
+            </if>
+
+
+
+            and 1=1
+        </where>
+    </select>
+</mapper>

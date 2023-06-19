@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.dao.BlogDao">
+
+    <!--    //统计我的微博数-->
+    <!--    public int getBlogCount(int uId) throws SQLException;-->
+    <select id="getBlogCount" resultType="Blog" parameterType="int">
+        select count(*) from blog where uid = #{uId}
+    </select>
+    <!--    //跟据博客Id获取博客的转发数目-->
+    <!--    public int getForwardCountByBid(int bid) throws SQLException;-->
+    <select id="getForwardCountByBid" resultType="Blog" parameterType="int">
+        select count(*) from blog where fromBid = #{uId}
+    </select>
+    <!--    //根据博客Id获取博客明细-->
+    <!--    public Blog findBlogById(int id) throws SQLException;-->
+    <select id="findBlogById" resultType="Blog" parameterType="int">
+        select
+        b1.id,b1.uid,b1.content,b1.images,b1.time,b1.state, u1.nickname as u_nickname, u1.image as u_image, u1.address
+        as u_address, u1.mysite as u_mysite,b2.id as f_id, b2.content as f_content, b2.images as f_images, u2.nickname
+        as f_nickname
+        from (select * from blog where id=#{id}) b1
+        left join blog b2 on b1.fromBid = b2.id
+        left join user u1 on b1.uid = u1.id
+        left join user u2 on b2.uid = u2.id
+    </select>
+    <!--    //删除一条微博-->
+    <!--    public int deleteBlog(int id) throws SQLException;-->
+    <delete id="deleteBlog" parameterType="int">
+        delete from blog where id = #{id}
+    </delete>
+    <!--    //统计我和我的关注人的微博总数-->
+    <!--    public int getAllBlogsCount(int uId, String keyword) throws SQLException;-->
+    <select id="getAllBlogsCount" resultType="Blog">
+        select count(*) from blog b1 left join blog b2 on b1.fromBid=b2.id
+        where (b1.uid = #{id} or b1.uid in (select followedUid from follow where uid = #{id}))
+        and (b1.content like concat('%',#{keyword},'%') or b2.content like concat('%',#{keyword},'%') )
+    </select>
+    <!--    //分页获取我和我的关注人的微博-->
+    <!--    public List<Blog> getAllBlogsByPage(int uId, String keyword, int pageNo, int pageSize) throws SQLException;-->
+    <select id="getAllBlogsByPage" resultType="Blog">
+        select b1.id,b1.uid, b1.content,b1.images,b1.time,b1.state,
+        u1.nickname as u_nickname, u1.image as u_image,b2.id as f_id,
+        b2.content as f_content, b2.images as f_images, u2.nickname as f_nickname
+        from blog b1 left join blog b2 on b1.fromBid = b2.id
+        left join user u1 on b1.uid=u1.id
+        left join user u2 on b2.uid=u2.id where (b1.uid = #{uId} or b1.uid in
+        (select followedUid from follow where uid = #{uId}))
+        <if test="#{keyword}!=null and #{keyword}!=''">
+            and (b1.content like concat('%',#{keyword},'%') or b2.content like concat('%',#{keyword},'%'))
+        </if>
+        order by b1.time desc LIMIT #{(pageNo - 1) * #{pageSize}} , #{pageSize}
+    </select>
+    <!--    //发布微博-->
+    <!--    public int addNewBlog(Blog blog,now) throws SQLException;-->
+    <insert id="addNewBlog">
+        insert into blog (uid, content, images, time, state) VALUES (#{uId}, #{content}, #{images}, #{now}, 1);
+    </insert>
+    <!--    //统计微博总数-->
+    <!--    public int getPopBlogsCount(int uId, String keyword) throws SQLException;-->
+    <select id="getPopBlogsCount" resultType="Blog">
+        select count(*)
+        from blog b1
+        left join blog b2 on b1.fromBid=b2.id
+        left join user u on b1.uid = u.id
+        where
+        (u.ispublic = 'T' or (u.ispublic = 'F' and u.id in (select followedUid from follow where uid = #{uId})))
+        and (b1.content like concat('%',#{keyword},'%') or b2.content like concat('%',#{keyword},'%') )
+    </select>
+    <!--    //分页查询热门微博列表-->
+    <!--    public List<Blog> getPopBlogsByPage(int uId, String keyword, int pageNo, int pageSize) throws SQLException;-->
+    <select id="getPopBlogsByPage" resultType="Blog">
+        select
+        b1.id, b1.uid, b1.content, b1.images, b1.time, b1.state, u1.nickname as u_nickname, u1.image as u_image, b3.id
+        as f_id, b3.content as f_content, u2.nickname as f_nickname, b3.images as f_images, b1.fromBid,
+        (count(distinct(c.id)) + count(distinct(l.id)) + count(distinct(b2.id))) as pop_count
+        from blog b1 left join comment as c on b1.id = c.bid and DATEDIFF(now(),c.time) <![CDATA[<=]]>7
+        left join likes as l on b1.id = l.bid and DATEDIFF(now(), l.time) <![CDATA[<=]]>7
+        left join blog as b2 on b2.fromBid = b1.id and DATEDIFF(now(),b2.time) <![CDATA[<=]]>7
+        left join user as u1 on b1.uid = u1.id
+        left join blog as b3 on b3.id = b1.fromBid
+        left join user as u2 on b3.uid = u2.id
+        where
+        (u1.ispublic = 'T' or (u1.ispublic = 'F' and b1.uid in (select followedUid from follow where uid = #{uId} )))
+        <if test="keyword!=null and keyword!=''">
+            and (b1.content like concat('%',#{keyword},'%') or b3.content like concat('%',#{keyword},'%') )
+        </if>
+        group by b1.id
+        order by pop_count desc LIMIT #{pageNo - 1}, #{pageSize}
+    </select>
+    <!--    //根据查询关键字统计用户微博数-->
+    <!--    public int getBlogCountByUidAndKeyword(int uId, String keyword) throws SQLException;-->
+    <select id="getBlogCountByUidAndKeyword" resultType="Blog">
+        select count(*) from blog b1 left join blog b2 on b1.fromBid=b2.id
+        where b1.uid = #{uId} and b1.content like concat('%',#{keyword},'%') or b2.content like
+        concat('%',#{keyword},'%')
+    </select>
+    <!--    //分页获取我的微博列表-->
+    <!--    public List<Blog> getMyBlogsByPage(int uId, String keyword, int pageNo, int pageSize) throws SQLException;-->
+    <select id="getMyBlogsByPage" resultType="Blog">
+        select b1.id,b1.uid,b1.content,b1.images,b1.time,b1.state,b2.id as f_id, b2.content as f_content,
+        b2.images as f_images, user.nickname as f_nickname from blog b1 left join blog b2 on b1.fromBid = b2.id
+        left join user on b2.uid = user.id where b1.uid = #{uId} and (b1.content like concat('%',#{keyword},'%') or
+        b2.content like concat('%',#{keyword},'%'))
+        order by b1.time desc LIMIT #{pageNo}, #{pageSize}
+    </select>
+    <!--    //转发微博-->
+    <!--    public int forwardBlog(int uId, String content, String now,int fromBid) throws SQLException;-->
+    <insert id="forwardBlog">
+        insert into blog (uid, content, time, state, fromBid) VALUES (#{uId},#{content},#{now},#{2},#{fromBid})
+    </insert>
+</mapper>
