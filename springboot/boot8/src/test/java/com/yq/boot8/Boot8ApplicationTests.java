@@ -1,33 +1,54 @@
 package com.yq.boot8;
 
-import org.junit.Before;
+import com.yq.boot8.entity.User;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.test.context.junit4.SpringRunner;
 import redis.clients.jedis.Jedis;
+
+import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
 class Boot8ApplicationTests {
 
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+    @Resource
+    private RedisTemplate redisTemplate;
     private Jedis jedis;
+
     @Test
     void contextLoads() {
     }
 
     @Test
-    public void testString(){
-        jedis = new Jedis("127.0.0.1",6379);
-        jedis.auth("root"); //权限认证
-        jedis.set("name","yq"); //key-value
-        System.out.println(jedis.get("name")); //获取数据,key
-        jedis.append("name","+cjm");
-        System.out.println(jedis.get("name")); //获取数据,key
-        jedis.del("name"); //删除键，key
-        System.out.println(jedis.get("name")); //获取不到了，删除成功
-        jedis.mset("name","cjm","sex","男","age","18"); //添加多个
-        jedis.incr("age"); //加一
-        System.out.println(jedis.get("name")+"\n"+jedis.get("sex")+"\n"+jedis.get("age"));
+    public void testString() {
+//        stringRedisTemplate.opsForValue().set("name","cjm");
+//        Assert.assertEquals("cjm",stringRedisTemplate.opsForValue().get("name"));
+//        User user = new User(1L,"cjm","123456",1L,1);
+//        ValueOperations<String,User> operations = redisTemplate.opsForValue();
+//        operations.set("crm",user);
+//        User user1 = operations.get("crm");
+//        System.out.println(user1.getUsr_name());
+//        stringRedisTemplate.delete("crm");
+        stringRedisTemplate.opsForValue().set("test", "100", 60 * 60, TimeUnit.SECONDS);
+        stringRedisTemplate.boundValueOps("test").increment(-1);
+        stringRedisTemplate.opsForValue().get("test");
+        stringRedisTemplate.boundValueOps("test").increment(1);
+        stringRedisTemplate.getExpire("test");
+        stringRedisTemplate.getExpire("test", TimeUnit.SECONDS);
+        stringRedisTemplate.delete("test");
+        stringRedisTemplate.hasKey("55555");
+        stringRedisTemplate.opsForSet().add("red_123", "1", "2", "3");
+        stringRedisTemplate.expire("red_123", 1000, TimeUnit.SECONDS);
+        stringRedisTemplate.opsForSet().isMember("red_123", 1);
+        stringRedisTemplate.opsForSet().members("red_123");
     }
 }

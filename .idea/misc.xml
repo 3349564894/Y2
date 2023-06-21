@@ -14,6 +14,7 @@
     <file type="web" url="file://$PROJECT_DIR$/ssm/sch08" />
     <file type="web" url="file://$PROJECT_DIR$/ssm/sch09" />
     <file type="web" url="file://$PROJECT_DIR$/ssm/sch10" />
+    <type id="Spring" />
   </component>
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="ES6" />
@@ -39,6 +40,7 @@
         <option value="$PROJECT_DIR$/ssm/sch09/pom.xml" />
         <option value="$PROJECT_DIR$/springboot/boot7/pom.xml" />
         <option value="$PROJECT_DIR$/springboot/boot8/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot/boot9/pom.xml" />
       </list>
     </option>
   </component>

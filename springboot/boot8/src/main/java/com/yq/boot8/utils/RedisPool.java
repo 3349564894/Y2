@@ -49,13 +49,4 @@ public final class RedisPool {
             return null;
         }
     }
-
-    /**
-     * 释放jedis资源
-     */
-    public static void returnResource(final Jedis jedis){
-        if (jedis != null){
-//            jedisPool.returnResource(jedis);
-        }
-    }
 }

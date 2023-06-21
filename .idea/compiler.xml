@@ -13,25 +13,26 @@
         <module name="boot3-mybatis" />
         <module name="724" />
         <module name="crm" />
-        <module name="sch09" />
         <module name="sch10" />
-        <module name="boot" />
+        <module name="sch06" />
         <module name="fch03" />
         <module name="fch02" />
         <module name="fch01" />
-        <module name="boot7" />
-        <module name="boot8" />
+        <module name="oasys" />
         <module name="springboot" />
+        <module name="boot9" />
+        <module name="boot8" />
+        <module name="boot7" />
         <module name="boot6" />
         <module name="boot5" />
         <module name="boot4" />
         <module name="boot3" />
         <module name="boot2" />
         <module name="boot1" />
-        <module name="oasys" />
+        <module name="sch09" />
         <module name="sch08" />
         <module name="sch07" />
-        <module name="sch06" />
+        <module name="boot" />
         <module name="sch05" />
       </profile>
     </annotationProcessing>
@@ -46,6 +47,7 @@
       <module name="boot6" target="1.8" />
       <module name="boot7" target="1.8" />
       <module name="boot8" target="8" />
+      <module name="boot9" target="1.8" />
       <module name="crm" target="1.8" />
       <module name="fch01" target="1.7" />
       <module name="fch02" target="1.7" />
@@ -76,6 +78,7 @@
       <module name="boot6" options="-parameters" />
       <module name="boot7" options="-parameters" />
       <module name="boot8" options="-parameters" />
+      <module name="boot9" options="-parameters" />
       <module name="crm" options="-parameters" />
       <module name="springboot" options="" />
     </option>
