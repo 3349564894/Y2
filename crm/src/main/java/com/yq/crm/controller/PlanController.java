@@ -6,6 +6,7 @@ import com.yq.crm.service.PlanService;
 import com.yq.crm.util.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,8 +39,24 @@ public class PlanController {
         return "plan/list";
     }
 
+    @PostMapping("/toedit")
+    String toedit(Model model, Long usrId) {
+        return "edit";
+    }
+
+    @PostMapping("/edit")
+    String edit(Chance chance) {
+        return "list";
+    }
+
+    @PostMapping("/del")
+
     // 跳转添加页面
-    @RequestMapping("/toAdd")
+    @RequestMapping("/toAdd/{id}")
+    String del(@PathVariable("id") Long usrId) {
+        return "";
+    }
+
     public String toAdd(Model model) {
 
 //        List<User> user = userService.findAll();

@@ -1,49 +1,52 @@
 package com.yq.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import groovy.transform.Field;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName("sal_chance")
 public class Chance {
-    private Integer chc_id;
-    private String chc_source;
-    private String chc_cust_name;
-    private String chc_title;
-    private Integer chc_rate;
-    private String chc_linkman;
-    private String chc_tel;
-    private String chc_desc;
-    private Integer chc_create_id;
-    private String chc_create_by;
+    @TableId
+    @TableField("chc_id")
+    private Long chcId;
+    @TableField("chc_source")
+    private String chcSource;
+    @TableField("chc_cust_name")
+    private String chcCustName;
+    @TableField("chc_title")
+    private String chcTitle;
+    @TableField("chc_rate")
+    private Integer chcRate;
+    @TableField("chc_linkman")
+    private String chcLinkman;
+    @TableField("chc_tel")
+    private String chcTel;
+    @TableField("chc_desc")
+    private String chcDesc;
+    @TableField("chc_create_id")
+    private Long chcCreateId;
+    @TableField("chc_create_by")
+    private String chcCreateBy;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
-    private Date chc_create_date;
-    private Integer chc_due_id;
-    private String chc_due_to;
+    @TableField("chc_create_date")
+    private Date chcCreateDate;
+    @TableField("chc_due_id")
+    private Long chcDueId;
+    @TableField("chc_due_to")
+    private String chcDueTo;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH-mm-ss")
-    private Date chc_due_data;
-    private Integer chc_status;
-
-    public Chance() {
-    }
-
-    public Chance(Integer chc_id, String chc_source, String chc_cust_name, String chc_title, Integer chc_rate, String chc_linkman, String chc_tel, String chc_desc, Integer chc_create_id, String chc_create_by, Date chc_create_date, Integer chc_due_id, String chc_due_to, Date chc_due_data, Integer chc_status) {
-        this.chc_id = chc_id;
-        this.chc_source = chc_source;
-        this.chc_cust_name = chc_cust_name;
-        this.chc_title = chc_title;
-        this.chc_rate = chc_rate;
-        this.chc_linkman = chc_linkman;
-        this.chc_tel = chc_tel;
-        this.chc_desc = chc_desc;
-        this.chc_create_id = chc_create_id;
-        this.chc_create_by = chc_create_by;
-        this.chc_create_date = chc_create_date;
-        this.chc_due_id = chc_due_id;
-        this.chc_due_to = chc_due_to;
-        this.chc_due_data = chc_due_data;
-        this.chc_status = chc_status;
-    }
+    @TableField("chc_due_data")
+    private Date chcDueData;
+    @TableField("chc_status")
+    private Integer chcStatus;
 }

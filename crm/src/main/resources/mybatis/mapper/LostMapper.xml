@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yq.crm.mapper.LostMapper">
-    <select id="finNameAndName" resultType="com.example.crm.entity.Lost">
+    <select id="finNameAndName" resultType="com.yq.crm.entity.Lost">
         select * from cst_lost <where>
         <if test="name!=null and name1!=null and name!='' and name1!=''">
             lst_cust_name like CONCAT('%',#{name},'%') and lst_cust_manager_name = #{name1}

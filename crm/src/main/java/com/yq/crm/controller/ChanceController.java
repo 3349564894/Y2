@@ -16,11 +16,6 @@ public class ChanceController {
     @Resource
     private ChanceService chanceService;
 
-    @GetMapping("/toadd")
-    public String toadd() {
-        return "chance/add";
-    }
-
     @GetMapping("/list")
     String findAllAndPage(Model model) {
         Page page = new Page();
@@ -62,7 +57,7 @@ public class ChanceController {
     }
 
     @RequestMapping("/toedit")
-    public String finNameAndTitle(Integer chcId, Model model) {
+    public String finNameAndTitle(Long chcId, Model model) {
         Chance chance = chanceService.findById(chcId);
         model.addAttribute("chance", chance);
         return "chance/edit";
@@ -78,6 +73,11 @@ public class ChanceController {
         }
     }
 
+    @GetMapping("/toadd")
+    public String toadd() {
+        return "chance/add";
+    }
+
     @RequestMapping("/add")
     public String addChance(Chance chance, Model model) {
         int add = chanceService.addChance(chance);
@@ -90,7 +90,7 @@ public class ChanceController {
 
     @RequestMapping("/del/{chcId}")
     @ResponseBody
-    public String delChance(@PathVariable(name = "chcId") Integer id) {
+    public String delChance(@PathVariable(name = "chcId") Long id) {
         int del = chanceService.deleteChance(id);
         if (del > 0) {
             return "{\"delResult\",\"true\"}";

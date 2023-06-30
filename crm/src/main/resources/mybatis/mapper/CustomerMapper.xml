@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yq.crm.mapper.CustomerMapper">
-    <select id="finNameAndRegion" resultType="com.example.crm.entity.Customer">
+    <select id="finNameAndRegion" resultType="com.yq.crm.entity.Customer">
         select * from cst_customer <where>
         <if test="name!=null and region!=null and name!='' and region!=''">
             cust_name like CONCAT('%',#{name},'%') and cust_region = #{region}

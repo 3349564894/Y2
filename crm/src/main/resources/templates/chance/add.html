@@ -110,8 +110,8 @@
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <select name="chc_due_id" required="required" id="chc_due_id" class="form-control">
                                         <option value="0">--请选择--</option>
-                                        <option th:each="user:${session.userList}" th:value="${user.usr_id}"
-                                                th:text="${user.usr_name}" value="">wuhu
+                                        <option th:each="user:${session.userList}" th:value="${user.usrId}"
+                                                th:text="${user.usrName}" value="">wuhu
                                         </option>
                                     </select>
                                 </div>

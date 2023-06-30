@@ -1,8 +1,14 @@
 package com.yq.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName("product")
 public class Product {
     private Integer prodId;
     private String prodName;
@@ -11,17 +17,4 @@ public class Product {
     private String prod_unit;
     private String prod_price;
     private String prod_memo;
-
-    public Product() {
-    }
-
-    public Product(Integer prodId, String prodName, String prodType, String prodBatch, String prod_unit, String prod_price, String prod_memo) {
-        this.prodId = prodId;
-        this.prodName = prodName;
-        this.prodType = prodType;
-        this.prodBatch = prodBatch;
-        this.prod_unit = prod_unit;
-        this.prod_price = prod_price;
-        this.prod_memo = prod_memo;
-    }
 }

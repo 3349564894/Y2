@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yq.crm.mapper.DictMapper">
-    <resultMap id="DictMap" type="com.example.crm.entity.Dict">
+    <resultMap id="DictMap" type="com.yq.crm.entity.Dict">
         <id property="dict_id" column="dict_id"/>
         <result property="dict_is_editable" column="dict_is_editable"/>
         <result property="dict_item" column="dict_item"/>
@@ -45,11 +45,11 @@
         delete from bas_dict where dict_id=#{id}
     </delete>
 
-    <update id="updDict" parameterType="com.example.crm.entity.Dict">
+    <update id="updDict" parameterType="com.yq.crm.entity.Dict">
         update bas_dict set dict_item=#{dict_item} where dict_id=#{dict_id}
     </update>
 
-    <insert id="allDict" parameterType="com.example.crm.entity.Dict">
+    <insert id="allDict" parameterType="com.yq.crm.entity.Dict">
         insert into bas_dict(dict_type,dict_item,dict_is_editable)
         values('服务类型',#{dict_value},'1')
     </insert>

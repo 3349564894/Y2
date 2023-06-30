@@ -74,7 +74,7 @@
         select * from cst_service where svr_id=#{id}
     </select>
 
-    <update id="updaService" parameterType="com.example.crm.entity.Services">
+    <update id="updaService" parameterType="com.yq.crm.entity.Services">
         update cst_service
         <trim prefix="set" prefixOverrides="," suffix="where svr_id=1">
             <if test="svrType!=null">`svr_type`=#{svrType},</if>
@@ -98,7 +98,7 @@
         </trim>
     </update>
 
-    <insert id="addService" parameterType="com.example.crm.entity.Services">
+    <insert id="addService" parameterType="com.yq.crm.entity.Services">
         insert  into cst_service(svr_type,svr_title,svr_cust_name,svr_status,svr_request,svr_create_by,svr_create_date)
         values(#{svrType},#{svrTitle},#{svrCustName},#{svrStatus},#{svrRequest},#{svrCreateBy},#{svrCreateDate})
     </insert>

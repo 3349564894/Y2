@@ -2,35 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/724/724.iml" filepath="$PROJECT_DIR$/724/724.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Y2.iml" filepath="$PROJECT_DIR$/.idea/Y2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/boot1/boot1.iml" filepath="$PROJECT_DIR$/springboot/boot1/boot1.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/boot2/boot2.iml" filepath="$PROJECT_DIR$/springboot/boot2/boot2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/boot3/boot3.iml" filepath="$PROJECT_DIR$/springboot/boot3/boot3.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/boot3-mybatis/boot3-mybatis.iml" filepath="$PROJECT_DIR$/springboot/boot3-mybatis/boot3-mybatis.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/boot4/boot4.iml" filepath="$PROJECT_DIR$/springboot/boot4/boot4.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/boot5/boot5.iml" filepath="$PROJECT_DIR$/springboot/boot5/boot5.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/boot6/boot6.iml" filepath="$PROJECT_DIR$/springboot/boot6/boot6.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/boot7/boot7.iml" filepath="$PROJECT_DIR$/springboot/boot7/boot7.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/boot8/boot8.iml" filepath="$PROJECT_DIR$/springboot/boot8/boot8.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/boot9/boot9.iml" filepath="$PROJECT_DIR$/springboot/boot9/boot9.iml" />
       <module fileurl="file://$PROJECT_DIR$/crm/crm.iml" filepath="$PROJECT_DIR$/crm/crm.iml" />
-      <module fileurl="file://$PROJECT_DIR$/framefoundation/fch01/fch01.iml" filepath="$PROJECT_DIR$/framefoundation/fch01/fch01.iml" />
-      <module fileurl="file://$PROJECT_DIR$/framefoundation/fch02/fch02.iml" filepath="$PROJECT_DIR$/framefoundation/fch02/fch02.iml" />
-      <module fileurl="file://$PROJECT_DIR$/framefoundation/fch03/fch03.iml" filepath="$PROJECT_DIR$/framefoundation/fch03/fch03.iml" />
-      <module fileurl="file://$PROJECT_DIR$/framefoundation/framefoundation.iml" filepath="$PROJECT_DIR$/framefoundation/framefoundation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/microblog/microblog.iml" filepath="$PROJECT_DIR$/microblog/microblog.iml" />
-      <module fileurl="file://$PROJECT_DIR$/oasys/oasys.iml" filepath="$PROJECT_DIR$/oasys/oasys.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ssm/sch01/sch01.iml" filepath="$PROJECT_DIR$/ssm/sch01/sch01.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ssm/sch02/sch02.iml" filepath="$PROJECT_DIR$/ssm/sch02/sch02.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ssm/sch05/sch05.iml" filepath="$PROJECT_DIR$/ssm/sch05/sch05.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ssm/sch06/sch06.iml" filepath="$PROJECT_DIR$/ssm/sch06/sch06.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ssm/sch07/sch07.iml" filepath="$PROJECT_DIR$/ssm/sch07/sch07.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ssm/sch08/sch08.iml" filepath="$PROJECT_DIR$/ssm/sch08/sch08.iml" />
       <module fileurl="file://$PROJECT_DIR$/ssm/sch09/sch09.iml" filepath="$PROJECT_DIR$/ssm/sch09/sch09.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ssm/sch10/sch10.iml" filepath="$PROJECT_DIR$/ssm/sch10/sch10.iml" />
-      <module fileurl="file://$PROJECT_DIR$/springboot/springboot.iml" filepath="$PROJECT_DIR$/springboot/springboot.iml" />
-      <module fileurl="file://$PROJECT_DIR$/ssm/ssm.iml" filepath="$PROJECT_DIR$/ssm/ssm.iml" />
     </modules>
   </component>
 </project>

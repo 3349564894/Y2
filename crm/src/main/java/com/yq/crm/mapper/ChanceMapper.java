@@ -9,13 +9,13 @@ import java.util.List;
 public interface ChanceMapper {
     List<Chance> findByChcCustNameAndTitle(@Param("name") String name, @Param("title") String title, @Param("current") Integer current, @Param("pageSize") Integer pageSize);
 
-    Chance findById(@Param("id") Integer id);
+    Chance findById(@Param("id") Long id);
 
     Integer updateChance(Chance chance);
 
     Integer addChance(Chance chance);
 
-    Integer deleteChance(@Param("id") Integer id);
+    Integer deleteChance(@Param("id") Long id);
 
     Integer count(@Param("name") String name, @Param("title") String title);
 }

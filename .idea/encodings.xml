@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$/724/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/724/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/crm/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/crm/src/main/resources/shiro.ini" charset="GBK" />
     <file url="file://$PROJECT_DIR$/framefoundation/fch01/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/framefoundation/fch02/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/framefoundation/fch02/src/main/resources" charset="UTF-8" />
@@ -24,7 +25,6 @@
     <file url="file://$PROJECT_DIR$/springboot/boot6/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/springboot/boot7/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/springboot/boot8/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/springboot/boot9/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ssm/sch01/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ssm/sch01/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ssm/sch02/src/main/java" charset="UTF-8" />

@@ -26,87 +26,75 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>服务创建<i class="fa fa-user"></i></h2>
+                    <h2>客户服务管理 &gt; 服务处理 <i class="fa fa-user"></i></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
                     <div class="clearfix"></div>
-                    <form class="form-horizontal form-label-left" action="/service/add" method="get">
+                    <form class="form-horizontal form-label-left" action="/user/add" th:action="@{/user/add}"
+                          method="post">
                         <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrCustName"> 客户 <span
-                                    class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select name="svrCustName" id="svrCustName" class="form-control" required="required">
-                                    <option value="">--请选择--</option>
-                                    <option value="方正集团">方正集团</option>
-                                    <option value="聪海信息科技有限公司">聪海信息科技有限公司</option>
-                                    <option value="客户3">客户3</option>
-                                    <option value="客户4">客户4</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrType"> 服务类型 <span
-                                    class="required">*</span></label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <select name="svrType" id="svrType" class="form-control" required="required">
-                                    <option value="">--请选择--</option>
-                                    <option value="建议">建议</option>
-                                    <option value="投诉">投诉</option>
-                                    <option value="咨询">咨询</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrCreateBy"> 创建人 <span
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrType"> 用户名 <span
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="svrCreateBy" class="form-control col-md-7 col-xs-12"
-                                       data-validate-length-range="10" data-validate-words="1" name="svrCreateBy"
-                                       required="required" placeholder="创建人" type="text" value="">
-                            </div>
-                        </div>
-                        <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrStatus"> 状态 <span
-                                    class="required">*</span>
-                            </label>
-                            <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="svrStatus" class="form-control col-md-7 col-xs-12"
-                                       data-validate-length-range="10" data-validate-words="1" name="svrStatus" value=""
+                                <input id="svrType" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10"
+                                       data-validate-words="1" name="svrType" required="required" placeholder=""
                                        type="text">
                             </div>
                         </div>
+
                         <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrTitle"> 概要 <span
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrTitle"> 现任角色 <span
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <input id="svrTitle" class="form-control col-md-7 col-xs-12"
-                                       data-validate-length-range="10" data-validate-words="1" name="svrTitle"
-                                       required="required" placeholder="概要" type="text">
+                                       th:value="${userTemp.usrRoleName}" data-validate-length-range="10"
+                                       data-validate-words="1" disabled="disabled" placeholder=""
+                                       type="text">
                             </div>
                         </div>
+
                         <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrCreateDate"> 创建时间 <span
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="usrRoleId"> 角色 <span
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="svrCreateDate" class="form-control date-picker col-md-7 col-xs-12"
-                                       data-validate-length-range="10" data-validate-words="1" name="svrCreateDate"
-                                       placeholder="创建时间" type="date">
+                                <select id="usrRoleId" name="usrRoleId">
+                                    <option value="1" th:selected="${userTemp == 1}">--董事长--</option>
+                                    <option value="2" th:selected="${userTemp == 2}">--客户经理--</option>
+                                    <option value="3" th:selected="${userTemp == 3}">--销售主管--</option>
+                                    <option value="4" th:selected="${userTemp == 4}">--管理员--</option>
+                                </select>
                             </div>
                         </div>
+
                         <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrRequest"> 服务请求 <span
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrStatus"> 密码 <span
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <textarea id="svrRequest" class="form-control col-md-7 col-xs-12" rows="6"
-                                          data-validate-length-range="10" data-validate-words="1" name="svrRequest"
-                                          required="required"></textarea>
+                                <input id="svrStatus" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10"
+                                       data-validate-words="1" name="password" required="required" placeholder=""
+                                       type="text">
                             </div>
                         </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrDeal"> 确认密码 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="svrDeal" class="form-control col-md-7 col-xs-12"
+                                       data-validate-length-range="10"
+                                       data-validate-words="1" name="password1" required="required" placeholder=""
+                                       type="text">
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
                                 <button id="send" type="submit" class="btn btn-success">保存</button>

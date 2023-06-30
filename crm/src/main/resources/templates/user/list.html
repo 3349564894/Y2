@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/html">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+>
 <head>
     <meta charset="UTF-8">
     <title>客户开发计划</title>
@@ -15,25 +18,23 @@
             </small>
         </h2>
     </div>
+    <form method="get" action="/user/list" th:action="@{/user/list}">
+        <div class="x_content">
 
-    <div class="x_content">
-        <form method="post" action="/chance/list" th:action="@{/chance/list}">
             <input type="hidden" name="pageIndex" value="1"/>
-            客户名称 <input name="chcCustName" type="text"
-                        class="form-control col-md-6 col-xs-12" value="">
-            负责人 <input name="chcLinkman" type="text"
-                       class="form-control col-md-6 col-xs-12" value="">
-            概要 <input name="chcDesc" type="text"
+            编号 <input name="usrId" type="text"
                       class="form-control col-md-6 col-xs-12" value="">
+            用户名 <input name="UsrName" type="text"
+                       class="form-control col-md-6 col-xs-12" value="">
             <button type="submit" class="btn btn-primary"> 查 &nbsp;&nbsp;&nbsp;&nbsp;询</button>
-        </form>
-    </div>
+
+        </div>
+    </form>
 </div>
-</div><br>
 <div class="col-sm-12">
-    <a href="/plan/toadd" th:href="@{/plan/toadd}"
-       class="btn btn-success btn-sm">新增销售机会</a>
-    <a href="/main" th:href="@{/main}">返回</a><br><br>
+    <a href="/user/add" th:href="@{/user/toadd}" class="btn btn-success btn-sm"
+    >新增用户信息</a>
+    <!--        shiro:hasPermission="用户新增"-->
     <table border="1px">
         <thead>
         <tr role="row">
@@ -41,64 +42,83 @@
                 编号
             </th>
             <th>
-                客户名称
+                用户名
             </th>
             <th>
-                负责人
-            </th>
-            <th>
-                公司电话
-            </th>
-            <th>
-                状态
-            </th>
-            <th>
-                概要
+                操作
             </th>
         </tr>
         </thead>
         <tbody>
-        <tr role="row" class="odd" th:each="plan:${planPage}">
-            <td tabindex="0" class="sorting_1" th:text="${plan.chcId}">chcId</td>
-            <td tabindex="0" class="sorting_1" th:text="${plan.chcCustName}">chcCustName</td>
-            <td tabindex="0" class="sorting_1" th:text="${plan.chcLinkman}">chcLinkman</td>
-            <td tabindex="0" class="sorting_1" th:text="${plan.chcTel}">chcTel</td>
-            <td tabindex="0" class="sorting_1" th:text="${plan.chcStatus}">chcStatic</td>
-            <td tabindex="0" class="sorting_1" th:text="${plan.chcDesc}">chcDesc</td>
+        <tr role="row" class="odd" th:each="user:${userPage.getRecords()}">
+            <td tabindex="0" class="sorting_1" th:text="${user.usrId}">无数据</td>
+            <td tabindex="0" class="sorting_1" th:text="${user.usrName}">无数据</td>
+            <div class="btn-group">
+                <button type="button" class="btn btn-danger">点击操作</button>
+                <button type="button" class="btn btn-danger dropdown-toggle"
+                        data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a class="editInfo"
+                           th:href="@{/user/toedit/usrId=${user.usrId}}"
+                           data-toggle="tooltip"
+                           data-placement="top" title=""
+                           data-original-title="编辑">编辑
+                        </a>
+                    </li>
+                    <li>
+                        <a class="delInfo" id="del"
+                           th:href="'javascript:doDel(this,'+${user.usrId}+')'"
+                           data-toggle="tooltip" data-placement="top" title=""
+                           data-original-title="删除">删除
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            </td>
         </tr>
         </tbody>
     </table>
 </div>
+</div><br>
 </div>
 <div class="row">
     <div class="col-sm-5">
-        <!--                        <div class="dataTables_info" id="datatable-responsive_info"-->
-        <!--                             role="status" aria-live="polite">共<span th:text="${chancePage.total}">1</span>条记录-->
-        <!--                            <span th:text="${chancePage.current}">1</span>/<span-->
-        <!--                                    th:text="${chancePage.pages}">5</span>页-->
-        <!--                        </div>-->
+        <div class="dataTables_info" id="datatable-responsive_info"
+             role="status" aria-live="polite">共
+            <span th:text="${userPage.getTotal()}">0</span>条记录
+            <span th:text="${userPage.getCurrent()}">0</span>/<span
+                    th:text="${userPage.getPages()}">0</span>页
+        </div>
     </div>
     <div class="col-sm-7">
         <div class="dataTables_paginate paging_simple_numbers"
              id="datatable-responsive_paginate">
             <ul class="pagination">
-                <li class="paginate_button previous"><a
-                        href="javascript:page_nav(document.forms[0],1);"
+                <li class="paginate_button previous" th:if="${userPage.getCurrent()!=1}"><a
+                        href="#"
+                        th:href="@{/user/list/current=1}"
                         aria-controls="datatable-responsive" data-dt-idx="0"
                         tabindex="0">首页</a>
                 </li>
-                <li class="paginate_button "><a
+                <li class="paginate_button " th:if="${userPage.getCurrent()!=1}"><a
                         href="#"
+                        th:href="@{/user/list/current=${userPage.getCurrent()-1}}"
                         aria-controls="datatable-responsive" data-dt-idx="1"
                         tabindex="0">上一页</a>
                 </li>
-                <li class="paginate_button "><a
+                <li class="paginate_button " th:if="${userPage.getPages()!=userPage.getCurrent()}"><a
                         href="#"
+                        th:href="@{/user/list/current=${userPage.getCurrent()+1}}"
                         aria-controls="datatable-responsive" data-dt-idx="2"
                         tabindex="0">下一页</a>
                 </li>
-                <li class="paginate_button next"><a
+                <li class="paginate_button next" th:if="${userPage.getPages()!=userPage.getCurrent()}"><a
                         href="#"
+                        th:href="@{/user/list/current=${userPage.getPages()}}"
                         aria-controls="datatable-responsive" data-dt-idx="7"
                         tabindex="0">最后一页</a>
                 </li>
@@ -106,6 +126,7 @@
         </div>
     </div>
 </div>
+
 </div>
 </div>
 </div>
@@ -115,3 +136,27 @@
 </div>
 </body>
 </html>
+<script>
+    function doDel(obj, usrId) {
+        if (confirm("你确定需要删除该用户信息吗？")) {
+            $.ajax({
+                type: "GET",
+                url: "/user/del/" + usrId,
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    if (data.result == "1") {//删除成功：移除删除行
+                        alert("删除成功！");
+                        location.reload();
+                        // $(obj).parents("tr").remove();
+                    }
+                },
+                error: function (data) {
+                    alert("删除成功！");
+                    location.reload();
+                    // $("#del").parents("tr").remove();
+                }
+            });
+        }
+    }
+</script>

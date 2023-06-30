@@ -7,33 +7,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="sch02" />
-        <module name="sch01" />
-        <module name="microblog" />
-        <module name="boot3-mybatis" />
-        <module name="724" />
-        <module name="crm" />
-        <module name="sch10" />
-        <module name="sch06" />
-        <module name="fch03" />
-        <module name="fch02" />
-        <module name="fch01" />
-        <module name="oasys" />
-        <module name="springboot" />
-        <module name="boot9" />
-        <module name="boot8" />
-        <module name="boot7" />
-        <module name="boot6" />
-        <module name="boot5" />
-        <module name="boot4" />
-        <module name="boot3" />
-        <module name="boot2" />
-        <module name="boot1" />
-        <module name="sch09" />
-        <module name="sch08" />
-        <module name="sch07" />
         <module name="boot" />
-        <module name="sch05" />
+        <module name="crm" />
+        <module name="qimao" />
+        <module name="sch09" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -55,6 +32,7 @@
       <module name="framefoundation" target="1.7" />
       <module name="microblog" target="1.7" />
       <module name="oasys" target="1.7" />
+      <module name="qimao" target="1.8" />
       <module name="sch01" target="1.7" />
       <module name="sch02" target="1.7" />
       <module name="sch05" target="1.7" />
@@ -80,6 +58,7 @@
       <module name="boot8" options="-parameters" />
       <module name="boot9" options="-parameters" />
       <module name="crm" options="-parameters" />
+      <module name="qimao" options="-parameters" />
       <module name="springboot" options="" />
     </option>
   </component>

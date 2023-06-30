@@ -40,7 +40,7 @@
          limit #{current},#{pageSize}
     </select>
 
-    <select id="findById" parameterType="_integer" resultType="Chance">
+    <select id="findById" parameterType="_long" resultType="Chance">
 
         select
 
@@ -58,7 +58,7 @@
 
         insert into sal_chance (chc_cust_name,chc_linkman,chc_tel,chc_desc,chc_source,chc_rate,chc_due_date,chc_due_id)
         values
-        (#{chc_cust_name},#{chc_linkman},#{chc_tel},#{chc_title},#{chc_source},#{chc_rate},#{chc_due_data},#{chc_due_id});
+        (#{chcCustName},#{chcLinkman},#{chcTel},#{chcTitle},#{chcSource},#{chcRate},#{chcDueData},#{chcDueId});
 
     </insert>
 
@@ -67,48 +67,48 @@
         update sal_chance
 
         <trim prefix="set" prefixOverrides="," suffix="where chc_id=#{chc_id}">
-            <if test="chc_cust_name != null">
-                `chc_cust_name`=#{chc_cust_name},
+            <if test="chcCustName != null">
+                `chc_cust_name`=#{chcCustName},
 
             </if>
-            <if test="chc_linkman != null">
+            <if test="chcLinkman != null">
 
-                chc_linkman=#{chc_linkman},
-
-            </if>
-            <if test="chc_tel != null">
-
-                chc_tel=#{chc_tel},
+                chc_linkman=#{chcLinkman},
 
             </if>
-            <if test="chc_title != null">
+            <if test="chcTel != null">
 
-                chc_title=#{chc_title},
-
-            </if>
-            <if test="chc_source != null">
-
-                chc_source=#{chc_source},
+                chc_tel=#{chcTel},
 
             </if>
-            <if test="chc_rate != null">
+            <if test="chcTitle != null">
 
-                chc_rate=#{chc_rate},
-
-            </if>
-            <if test="chc_due_data != null">
-
-                chc_due_data=#{chc_due_data},
+                chc_title=#{chcTitle},
 
             </if>
-            <if test="chc_due_id != null">
+            <if test="chcSource != null">
 
-                chc_due_id=#{chc_due_id},
+                chc_source=#{chcSource},
 
             </if>
-            <if test="chc_desc != null">
+            <if test="chcRate != null">
 
-                chc_desc=#{chc_desc}
+                chc_rate=#{chcRate},
+
+            </if>
+            <if test="chcDueData != null">
+
+                chc_due_data=#{chcDueData},
+
+            </if>
+            <if test="chcDueId != null">
+
+                chc_due_id=#{chcDueId},
+
+            </if>
+            <if test="chcDesc != null">
+
+                chc_desc=#{chcDesc}
             </if>
         </trim>
     </update>

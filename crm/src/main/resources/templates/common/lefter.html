@@ -8,7 +8,7 @@
 <left th:fragment="lefter">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a th:href="@{/main}" href="/main" class="site_title">
+            <a th:href="@{/user/main}" href="/user/main" class="site_title">
                 <i class="fa fa-paw"></i>
                 <span>科泰教育CRM</span>
             </a>
@@ -24,7 +24,7 @@
             </div>
             <div class="profile_info">
                 <span>Welcome</span>
-                <h2 th:text="${session.user.usr_name}"></h2>
+                <h2 th:text="${session.user.usrName}"></h2>
             </div>
         </div>
         <!-- /menu profile quick info -->
@@ -34,7 +34,7 @@
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
-                <h3 th:text="${session.user.usr_role_name}">登录角色</h3>
+                <h3 th:text="${session.user.usrRoleName}">登录角色</h3>
                 <ul class="nav side-menu">
                     <li>
                         <a>
@@ -87,25 +87,25 @@
                             </li>
                         </ul>
                     </li>
-                    <!--                    <li>-->
-                    <!--                        <a>-->
-                    <!--                            <i class="fa fa-home"></i> <span>统计报表</span>-->
-                    <!--                            <span class="fa fa-chevron-down"></span>-->
-                    <!--                        </a>-->
-                    <!--                        <ul class="nav child_menu">-->
-                    <!--                            <li>-->
-                    <!--                                <a href="/contrRpt/list">客户贡献分析</a>-->
-                    <!--                            </li>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="/consRpt/list">客户构成分析</a>-->
-                    <!--                            </li>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="/svrRpt/list">客户服务分析</a>-->
-                    <!--                            </li>-->
-                    <!--                            <li>-->
-                    <!--                                <a href="/lostRpt/list">客户流失分析</a>-->
-                    <!--                            </li>-->
-                    <!--                        </ul>-->
+                    <li>
+                        <a>
+                            <i class="fa fa-home"></i> <span>统计报表</span>
+                            <span class="fa fa-chevron-down"></span>
+                        </a>
+                        <ul class="nav child_menu">
+                            <li>
+                                <a href="/contrRpt/list">客户贡献分析</a>
+                            </li>
+                            <li>
+                                <a href="/consRpt/list">客户构成分析</a>
+                            </li>
+                            <li>
+                                <a href="/svrRpt/list">客户服务分析</a>
+                            </li>
+                            <li>
+                                <a href="/lostRpt/list">客户流失分析</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a>

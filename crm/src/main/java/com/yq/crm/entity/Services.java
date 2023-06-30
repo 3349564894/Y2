@@ -1,11 +1,17 @@
 package com.yq.crm.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName("cst_service")
 public class Services {
     private Long svrId;
     private String svrType;
@@ -29,29 +35,4 @@ public class Services {
     private Date svrDealDate;
     private String svrResult;
     private Long svrSatisfy;
-
-    public Services() {
-    }
-
-    public Services(Long svrId, String svrType, String svrTitle, String svrCustNo, String svrCustName, String svrStatus, String svrRequest, Long svrCreateId, String svrCreateBy, Date svrCreateDate, Long svrDueId, String svrDueTo, Date svrDueDate, String svrDeal, Long svrDealId, String svrDealBy, Date svrDealDate, String svrResult, Long svrSatisfy) {
-        this.svrId = svrId;
-        this.svrType = svrType;
-        this.svrTitle = svrTitle;
-        this.svrCustNo = svrCustNo;
-        this.svrCustName = svrCustName;
-        this.svrStatus = svrStatus;
-        this.svrRequest = svrRequest;
-        this.svrCreateId = svrCreateId;
-        this.svrCreateBy = svrCreateBy;
-        this.svrCreateDate = svrCreateDate;
-        this.svrDueId = svrDueId;
-        this.svrDueTo = svrDueTo;
-        this.svrDueDate = svrDueDate;
-        this.svrDeal = svrDeal;
-        this.svrDealId = svrDealId;
-        this.svrDealBy = svrDealBy;
-        this.svrDealDate = svrDealDate;
-        this.svrResult = svrResult;
-        this.svrSatisfy = svrSatisfy;
-    }
 }

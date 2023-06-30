@@ -19,7 +19,7 @@ public class ChanceServiceImp implements ChanceService {
     }
 
     @Override
-    public Chance findById(Integer id) {
+    public Chance findById(Long id) {
         return chanceMapper.findById(id);
     }
 
@@ -34,7 +34,7 @@ public class ChanceServiceImp implements ChanceService {
     }
 
     @Override
-    public Integer deleteChance(Integer id) {
+    public Integer deleteChance(Long id) {
         return chanceMapper.deleteChance(id);
     }
 

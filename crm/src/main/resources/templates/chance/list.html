@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
-      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+>
 <head>
     <title>销售管理</title>
     <link th:href="@{/localcss/crmlist.css}" href="../static/localcss/crmlist.css" rel="stylesheet">
@@ -102,32 +103,22 @@
                                         </thead>
                                         <tbody>
                                         <tr role="row" class="odd" th:each="chance:${chancePage.list}">
-                                            <td tabindex="0" class="sorting_1" th:text="${chance.chc_id}">chcId</td>
-                                            <td th:text="${chance.chc_cust_name}">chcCustName</td>
-                                            <td th:text="${chance.chc_linkman}">chcLinkman</td>
-                                            <td th:text="${chance.chc_tel}">chcTel</td>
-                                            <td th:text="${chance.chc_title}">chcDesc</td>
+                                            <td tabindex="0" class="sorting_1" th:text="${chance.chcId}">chcId</td>
+                                            <td th:text="${chance.chcCustName}">chcCustName</td>
+                                            <td th:text="${chance.chcLinkman}">chcLinkman</td>
+                                            <td th:text="${chance.chcTel}">chcTel</td>
+                                            <td th:text="${chance.chcTitle}">chcDesc</td>
                                             <td>
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-danger">点击操作</button>
-                                                    <button type="button" class="btn btn-danger dropdown-toggle"
-                                                            data-toggle="dropdown" aria-expanded="false">
-                                                        <span class="caret"></span>
-                                                        <span class="sr-only">Toggle Dropdown</span>
-                                                    </button>
-                                                    <ul class="dropdown-menu" role="menu">
-                                                        <!--                                             -->
-                                                        <li><a class="editInfo"
-                                                               th:href="@{/chance/toedit/(chcId=${chance.chc_id})}"
-                                                               data-toggle="tooltip"
-                                                               data-placement="top" title=""
-                                                               data-original-title="编辑">编辑</a>
-                                                        </li>
-                                                        <li><a class="delInfo" id="del"
-                                                               th:href="'javascript:doDel(this,'+${chance.chc_id}+')'"
-                                                               data-toggle="tooltip" data-placement="top" title=""
-                                                               data-original-title="删除">删除</a></li>
-                                                    </ul>
+                                                    <a id="abc"
+                                                       th:href="@{/chance/toedit/(chcId=${chance.chcId})}"
+                                                       data-toggle="tooltip"
+                                                       data-placement="top" title=""
+                                                       data-original-title="编辑">编辑</a>
+                                                    <a id="abc"
+                                                       th:href="'javascript:doDel(this,'+${chance.chcId}+')'"
+                                                       data-toggle="tooltip" data-placement="top" title=""
+                                                       data-original-title="删除">删除</a>
                                                 </div>
                                             </td>
                                         </tr>
