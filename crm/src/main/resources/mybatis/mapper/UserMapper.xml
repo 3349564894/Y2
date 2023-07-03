@@ -11,7 +11,7 @@
         <result property="usrRoleId" column="usr_role_id"/>
         <result property="usrFlag" column="usr_flag"/>
 
-        <association property="role" column="usr_role_id" javaType="role">
+        <association property="role" javaType="Role">
             <id property="roleId" column="role_id"/>
             <result property="roleName" column="role_name"/>
             <result property="roleFlag" column="role_flag"/>

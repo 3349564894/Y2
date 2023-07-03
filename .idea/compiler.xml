@@ -7,10 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="boot" />
         <module name="crm" />
-        <module name="qimao" />
-        <module name="sch09" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -18,14 +15,13 @@
       <module name="boot1" target="1.8" />
       <module name="boot2" target="1.8" />
       <module name="boot3" target="1.8" />
-      <module name="boot3-mybatis" target="1.8" />
+      <module name="boot3-mybatis" target="1.5" />
       <module name="boot4" target="1.8" />
       <module name="boot5" target="1.8" />
       <module name="boot6" target="1.8" />
       <module name="boot7" target="1.8" />
       <module name="boot8" target="8" />
       <module name="boot9" target="1.8" />
-      <module name="crm" target="1.8" />
       <module name="fch01" target="1.7" />
       <module name="fch02" target="1.7" />
       <module name="fch03" target="1.7" />

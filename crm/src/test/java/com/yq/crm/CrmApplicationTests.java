@@ -54,6 +54,7 @@ class CrmApplicationTests {
 //        System.out.println("验证权限：" + subject.isPermitted("user:list"));
 //        //使用check方法判断是否拥有某权限，但是失败会抛出异常:UnauthorizedException
 //        subject.checkPermission("dict:list");
+        System.out.println(userService.findUser("admin", "123456").getUsrName());
         System.out.println(userService.findUser("admin", "123456").getRole().getRoleName());
     }
 

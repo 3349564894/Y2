@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FrameworkDetectionExcludesConfiguration">
-    <file type="web" url="file://$PROJECT_DIR$/724" />
-    <file type="web" url="file://$PROJECT_DIR$/framefoundation" />
-    <file type="web" url="file://$PROJECT_DIR$/microblog" />
-    <file type="web" url="file://$PROJECT_DIR$/oasys" />
-    <file type="web" url="file://$PROJECT_DIR$/ssm/sch01" />
-    <file type="web" url="file://$PROJECT_DIR$/ssm/sch02" />
+    <file type="web" url="file://$PROJECT_DIR$" />
     <file type="web" url="file://$PROJECT_DIR$/ssm/sch04" />
-    <file type="web" url="file://$PROJECT_DIR$/ssm/sch05" />
-    <file type="web" url="file://$PROJECT_DIR$/ssm/sch06" />
-    <file type="web" url="file://$PROJECT_DIR$/ssm/sch07" />
-    <file type="web" url="file://$PROJECT_DIR$/ssm/sch08" />
-    <file type="web" url="file://$PROJECT_DIR$/ssm/sch09" />
-    <file type="web" url="file://$PROJECT_DIR$/ssm/sch10" />
     <type id="Spring" />
   </component>
   <component name="JavaScriptSettings">
@@ -23,9 +13,9 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/framefoundation/pom.xml" />
-        <option value="$PROJECT_DIR$/crm/pom.xml" />
         <option value="$PROJECT_DIR$/sp/sss/pom.xml" />
         <option value="$PROJECT_DIR$/ssm/pom.xml" />
+        <option value="$PROJECT_DIR$/crm/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -41,6 +31,7 @@
         <option value="$PROJECT_DIR$/ssm/sch06/pom.xml" />
         <option value="$PROJECT_DIR$/ssm/sch07/pom.xml" />
         <option value="$PROJECT_DIR$/ssm/sch08/pom.xml" />
+        <option value="$PROJECT_DIR$/ssm/sch09/pom.xml" />
         <option value="$PROJECT_DIR$/ssm/sch10/pom.xml" />
       </set>
     </option>
