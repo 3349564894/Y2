@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class DictServiceImp implements DictService {
+public class DictServiceImpl implements DictService {
     @Resource
     private DictMapper dictMapper;
 

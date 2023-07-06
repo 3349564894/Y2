@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class CustomerServiceImp implements CustomerService {
+public class CustomerServiceImpl implements CustomerService {
     @Resource
     private CustomerMapper customerMapper;
 

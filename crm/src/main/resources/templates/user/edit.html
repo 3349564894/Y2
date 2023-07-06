@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" layout:decorate="main"
+<html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorate="main"
       xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
     <meta charset="UTF-8">
@@ -26,7 +27,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>客户服务管理 &gt; 服务处理 <i class="fa fa-user"></i></h2>
+                    <h2>用户管理 &gt; 编辑信息 <i class="fa fa-user"></i></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -34,15 +35,37 @@
                     <form class="form-horizontal form-label-left" action="/user/edit" th:action="@{/user/edit}"
                           method="post">
 
+                        <input name="usrId" th:value="${userTemp.usrId}" hidden>
                         <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrType"> 用户名 <span
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> 编号 <span
                                     class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="svrType" class="form-control col-md-7 col-xs-12"
+                                <input class="form-control col-md-7 col-xs-12"
+                                       th:value="${userTemp.usrId}" data-validate-length-range="10"
+                                       data-validate-words="1" disabled="disabled" placeholder=""
+                                       type="text">
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="usrName"> 用户名 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input id="usrName" class="form-control col-md-7 col-xs-12"
                                        th:value="${userTemp.usrName}" data-validate-length-range="10"
                                        data-validate-words="1" name="usrName" required="required" placeholder=""
                                        type="text">
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> 现任角色 <span
+                                    class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <span th:text="${userTemp.role.roleName}"></span>
                             </div>
                         </div>
 
@@ -52,42 +75,42 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <select id="usrRoleId" name="usrRoleId">
-                                    <option value="1" th:selected="${userTemp == 1}">--董事长--</option>
-                                    <option value="2" th:selected="${userTemp == 2}">--客户经理--</option>
-                                    <option value="3" th:selected="${userTemp == 3}">--销售主管--</option>
-                                    <option value="4" th:selected="${userTemp == 4}">--管理员--</option>
+                                    <option value="1" th:selected="${userTemp.role.roleId == 1}">--董事长--</option>
+                                    <option value="2" th:selected="${userTemp.role.roleId == 2}">--客户经理--</option>
+                                    <option value="3" th:selected="${userTemp.role.roleId == 3}">--销售主管--</option>
+                                    <option value="4" th:selected="${userTemp.role.roleId == 4}">--管理员--</option>
+                                    <option value="5" th:selected="${userTemp.role.roleId == 5}">--管理员--</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrStatus"> 密码 <span
-                                    class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="UsrPassword"> 密码
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="svrStatus" class="form-control col-md-7 col-xs-12"
+                                <input id="UsrPassword" class="form-control col-md-7 col-xs-12"
                                        data-validate-length-range="10"
-                                       data-validate-words="1" name="password" required="required" placeholder=""
+                                       data-validate-words="1" name="UsrPassword" placeholder=""
                                        type="text">
                             </div>
                         </div>
 
                         <div class="item form-group">
-                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="svrDeal"> 确认密码 <span
-                                    class="required">*</span>
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="UsrPassword"> 确认密码
                             </label>
                             <div class="col-md-6 col-sm-6 col-xs-12">
-                                <input id="svrDeal" class="form-control col-md-7 col-xs-12"
+                                <input id="UsrPassword1" class="form-control col-md-7 col-xs-12"
                                        data-validate-length-range="10"
-                                       data-validate-words="1" name="password1" required="required" placeholder=""
+                                       data-validate-words="1" name="UsrPassword1" placeholder=""
                                        type="text">
                             </div>
                         </div>
-
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-3">
-                                <button id="send" type="submit" class="btn btn-success">保存</button>
-                                <button type="button" class="btn btn-primary" id="back">返回</button>
+                                <button id="send" type="button" onclick="clicked()" class="btn btn-success">保存</button>
+                                <button type="button" class="btn btn-primary" onclick="javascript:history.back()"
+                                        id="back">返回
+                                </button>
                                 <br><br>
                             </div>
                         </div>
@@ -99,3 +122,28 @@
 </div>
 </body>
 </html>
+<script src="../../static/js/jquery.js"></script>
+<script>
+    function clicked() {
+        var pwd1 = $("[name=UsrPassword]").val();
+        var pwd2 = $("[name=UsrPassword1]").val();
+        if (pwd1 != pwd2) {
+            alert("两次密码不一致！")
+        } else {
+            $.ajax({
+                url: "/user/edit",
+                type: "post",
+                data: $("form").serialize(),
+                dataType: "json",
+                success: function (data) {
+                    if (data == 1) {
+                        alert("修改成功");
+                        location.href = '/user/list';
+                    } else {
+                        alert("修改失败");
+                    }
+                }
+            })
+        }
+    }
+</script>

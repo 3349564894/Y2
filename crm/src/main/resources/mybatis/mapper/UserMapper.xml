@@ -3,9 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yq.crm.mapper.UserMapper">
-
     <resultMap id="role_resultMap" type="User">
-       <id property="usrId" column="usr_id"/>
+        <id property="usrId" column="usr_id"/>
         <result property="usrName" column="usr_name"/>
         <result property="usrPassword" column="usr_password"/>
         <result property="usrRoleId" column="usr_role_id"/>
@@ -20,6 +19,8 @@
     </resultMap>
 
     <select id="findUser" resultMap="role_resultMap">
+
+
     select
     u.usr_id,
     u.usr_name,
@@ -32,55 +33,141 @@
     r.role_flag
     from sys_user as u,sys_role as r
     where
-    u.usr_role_id = r.role_id
-    and
-    u.usr_name=#{usr_name}
-    and
-    u.usr_password=#{usr_password}
+
+        <trim suffix="and" suffixOverrides="and">
+            u.usr_role_id = r.role_id
+
+            <if test="usr_name != null and usr_name != ''">
+                  u.usr_name=#{usr_name}
+            </if>
+            <if test="usr_password != null and usr_password != ''">
+                  u.usr_password=#{usr_password}
+            </if>
+        </trim>
     </select>
 
     <select id="findUsers" resultType="User">
+
+
         select * from sys_user
+
+
         <trim prefix="where" prefixOverrides="and">
             <if test="usr_id != null">
                 usr_id = #{usr_id}
+
+
             </if>
             <if test="usr_name != null and usr_name != ''">
+
+
                 and usr_name = #{usr_name}
             </if>
         </trim>
+
+
         ;
+
+
     </select>
 
-    <select id="findById" resultType="User">
-        select usr_id,
-        usr_name,
-        usr_password,
-        usr_role_id,
-        usr_flag
-        from sys_user
+    <select id="findById" resultType="User" resultMap="role_resultMap">
+
+
+        select
+        u.usr_id,
+        u.usr_name,
+        u.usr_password,
+        u.usr_role_id,
+        u.usr_flag,
+        r.role_id,
+        r.role_name,
+        r.role_desc,
+        r.role_flag
+        from sys_user as u,sys_role as r
         where
-        usr_id = #{usr_id}
+        u.usr_role_id = r.role_id
+        and
+        u.usr_id = #{usr_id}
+
+
     </select>
 
-        <select id="findByName" resultType="User">
-        select usr_id,
-        usr_name,
-        usr_password,
-        usr_role_id,
-        usr_flag,
-        role.role_name as usr_role_name
-        from sys_user
-        left join sys_role as role on role.role_id = usr_role_id
+    <select id="findRoleName" resultType="string">
+
+
+    select role_name from sys_role;
+
+
+    </select>
+
+    <select id="findByName" resultType="User" resultMap="role_resultMap">
+
+
+        select
+        u.usr_id,
+        u.usr_name,
+        u.usr_password,
+        u.usr_role_id,
+        u.usr_flag,
+        r.role_id,
+        r.role_name,
+        r.role_desc,
+        r.role_flag
+        from sys_user as u ,sys_role as r
         where
-        usr_name = #{usrName}
+        u.usr_role_id = r.role_id
+        and
+        u.usr_name = #{usrName}
+
+
     </select>
 
 
     <update id="updateUser">
+
+
+        update sys_user
+
+
+        <set>
+            <if test="usrName != null and usrName != ''">
+                usr_name = #{usrName,jdbcType=VARCHAR},
+
+            </if>
+            <if test="usrRoleId != null and usrRoleId != ''">
+
+                usr_role_id = #{usrRoleId,jdbcType=VARCHAR},
+
+            </if>
+            <if test="usrPassword != null and usrPassword != ''">
+
+                usr_password = #{usrPassword,jdbcType=VARCHAR}
+            </if>
+        </set>
+
+
+            where usr_id = #{usrId};
+
+
     </update>
     <delete id="deleteUser">
+
+
+        delete from sys_user where usr_id = #{usrId}
+
+
     </delete>
     <insert id="addUser">
+
+
+    insert into sys_user(
+        usr_name,
+        usr_password,
+        usr_role_id,
+        usr_flag)
+        values(#{usrName},#{usrPassword},#{usrRoleId},0)
+
+
     </insert>
 </mapper>

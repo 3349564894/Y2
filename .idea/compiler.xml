@@ -7,7 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="crm" />
+        <module name="authoritysystem" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,6 +22,7 @@
       <module name="boot7" target="1.8" />
       <module name="boot8" target="8" />
       <module name="boot9" target="1.8" />
+      <module name="crm" target="1.8" />
       <module name="fch01" target="1.7" />
       <module name="fch02" target="1.7" />
       <module name="fch03" target="1.7" />
@@ -43,6 +44,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="authoritysystem" options="-parameters" />
       <module name="boot1" options="-parameters" />
       <module name="boot2" options="-parameters" />
       <module name="boot3" options="-parameters" />

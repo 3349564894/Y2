@@ -1,6 +1,5 @@
 package com.yq.crm.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -16,15 +15,13 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 
-@TableName(value = "sys_role")
-public class Role implements Serializable {
-
+@TableName("sys_role_right")
+public class RoleRight implements Serializable {
     @TableId
-    private Long roleId;
-    private String roleName;
-    private String roleDesc;
-    private Integer roleFlag;
+    private Long rfId;
+    private Long rfRoleId;
+    private String rfRightCode;
 
     @TableField(exist = false)
-    private Set<RoleRight> roleRights = new HashSet<>(0);
+    private Set<Right> rights = new HashSet<>(0);
 }

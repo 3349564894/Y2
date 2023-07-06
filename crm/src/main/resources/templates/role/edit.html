@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" layout:decorate="main" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>销售机会管理</title>
+    <link href="../static/localcss/crmadd.css" rel="stylesheet" th:href="@{/localcss/crmlist.css}">
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="">
+        <div class="clearfix"></div>
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>修改 <i class="fa fa-user"></i></h2>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <div class="clearfix"></div>
+                        <form action="/chance/add" class="form-horizontal form-label-left" id="chanceAdd"
+                              method="post">
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> 角色名称 <span
+                                        class="required"></span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input class="form-control col-md-7 col-xs-12" data-validate-length-range="10"
+                                           th:value="${role.getRoleName()}" data-validate-words="1" name="roleName"
+                                           type="text"/>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> 角色描述
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input class="form-control col-md-7 col-xs-12" data-validate-length-range="10"
+                                           th:value="${role.getRoleDesc()}" data-validate-words="1" name="roleDesc"
+                                           type="text"/>
+                                </div>
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> 角色状态
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input class="form-control col-md-7 col-xs-12" th:checked="${role.roleFlag==1}"
+                                           id="roleFlag" type="checkbox"/>（是否启用）
+                                </div>
+
+                            </div>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> 指派权限
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12" style="padding-top: 7px">
+                                    <ol style="list-style: none;padding-left: 0px">
+                                        <li th:if="${right1.right_type=='Folder'}"
+                                            th:each="right1:${rights}">
+                                            <input type="checkbox" name="rightCodes"
+                                                   th:checked="${roleRights.contains(right1)}"
+                                                   th:value="${right1.right_code}">
+                                            <label th:text="${right1.right_text}">一级权限</label>
+                                            <ol style="list-style: none">
+                                                <li th:if="${right2.right_type=='Document' &&
+                                                right2.right_parent_code==right1.right_code}"
+                                                    th:each="right2:${rights}">
+                                                    <input type="checkbox" name="rightCodes"
+                                                           th:checked="${roleRights.contains(right2)}"
+                                                           th:value="${right2.right_code}">
+                                                    <span th:text="${right2.right_text}">二级权限</span>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-3">
+                                    <!--创建人-->
+                                    <button class="btn btn-success" id="send" type="submit">保存</button>
+                                    <button class="btn btn-primary" id="back" type="button">返回</button>
+                                    <br/><br/>
+                                </div>
+                            </div>
+                            <input type="text" name="roleId" th:value="${role.roleId}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script layout:fragment="js">
+    //返回按钮
+    $(document).ready(function () {
+        $("#back").on("click", function () {
+            window.history.back();
+        });
+    });
+
+    //异步新增
+    $("#chanceAdd").submit(function (e) {
+        e.preventDefault();     //// 阻止默认提交表单的行为
+        flag = $('#roleFlag');
+        //判断角色状态
+        if (flag.prop('checked')) {
+            flag = 1;
+        } else {
+            flag = 0;
+        }
+        $.ajax({
+            url: "/role/save?roleFlag=" + flag,
+            type: "POST",
+            data: $(this).serialize(),
+            cache: false,       //不缓存数据
+            success: function (result) {
+                // 跳转到列表页并刷新数据
+                window.location.href = "/role/dolist";
+            },
+            error: function (xhr, status, error) {
+                console.error(error);
+            }
+        });
+    });
+</script>
+</html>

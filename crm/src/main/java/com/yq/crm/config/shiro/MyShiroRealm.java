@@ -1,5 +1,8 @@
 package com.yq.crm.config.shiro;
 
+import com.yq.crm.entity.Right;
+import com.yq.crm.entity.Role;
+import com.yq.crm.entity.RoleRight;
 import com.yq.crm.entity.User;
 import com.yq.crm.service.UserService;
 import org.apache.shiro.authc.*;
@@ -9,6 +12,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 
 import javax.annotation.Resource;
+import java.util.Set;
 
 public class MyShiroRealm extends AuthorizingRealm {
 
@@ -18,11 +22,36 @@ public class MyShiroRealm extends AuthorizingRealm {
     //授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        System.out.println("进入授权----------");
+        System.out.println("授权。。。。");
         User loginUser = (User) principalCollection.getPrimaryPrincipal();//身份
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        //静态授权
-        info.addRole(loginUser.getRole().getRoleName());
+        //静态授权：授予主体响应的角色和权限
+//        info.addRole(loginUser.getRole().getRoleName());//角色
+//        //权限
+//        info.addStringPermission("用户列表");
+//        if("董事长".equals(loginUser.getRole().getRoleName())){
+//            info.addStringPermission("用户新增");
+//            info.addStringPermission("用户编辑");
+//            info.addStringPermission("用户删除");
+//        }else if ("管理员".equals(loginUser.getRole().getRoleName())){
+//            info.addStringPermission("用户新增");
+//            info.addStringPermission("用户编辑");
+//            info.addStringPermission("用户删除");
+//        }
+        //动态授权
+        Role role = loginUser.getRole();
+        if (role != null) {
+            info.addRole(loginUser.getRole().getRoleName());
+            Set<RoleRight> roleRights = role.getRoleRights();
+            if (roleRights != null && roleRights.size() != 0) {
+                for (RoleRight roleRight : roleRights) {
+                    for (Right right : roleRight.getRights()) {
+                        info.addStringPermission(right.getRightCode());
+                    }
+
+                }
+            }
+        }
         return info;
     }
 

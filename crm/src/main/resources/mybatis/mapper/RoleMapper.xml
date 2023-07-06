@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yq.crm.mapper.RoleMapper">
+<resultMap id="right_resultMap" type="Right">
+    <id column="right_id" property="rightCode"/>
+    <result column="right_parent_code" property="rightParentCode"/>
+    <result column="right_text" property="rightText"/>
+    <result column="right_tip" property="rightTip"/>
+    <result column="right_type" property="rightType"/>
+    <result column="right_url" property="rightUrl"/>
+    <collection property="roles" javaType="Role" >
+    <id column="role_id" property="roleId"></id>
+    <result property="roleName" column="role_name"/>
+    <result property="roleDesc" column="role_desc"/>
+    <result property="roleFlag" column="role_flag"/>
+</collection>
+</resultMap>
+    <select id="findAll" resultType="Role">
+        select * from sys_role;
+    </select>
+    <select id="findAllByRole" resultType="Right" resultMap="right_resultMap">
+        select sys_right.*,sys_role.*
+        from `sys_right`
+        left join sys_role on sys_role.role_id = sys_role_right.rf_role_id
+        where sys_role.role_id = '1'
+    </select>
+    <select id="findAllRights" resultType="Right">
+    select sys_right.*
+        from `sys_right`
+</select>
+</mapper>

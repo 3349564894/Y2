@@ -1,28 +1,28 @@
 package com.yq.crm.service;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yq.crm.entity.User;
+import com.yq.crm.vo.UserInfo;
 
-import java.awt.print.Pageable;
 import java.util.List;
 
 
-public interface UserService {
+public interface UserService extends IService<User>{
 
-    Page<User> findUsers(Page page, QueryWrapper wrapper);
+    IPage<User> findUsers(UserInfo userInfo);
 
     User findUser(String usr_name, String usr_password);
 
     User findById(Long usr_id);
 
+    List<String> findRoleName();
+
     User findByName(String usrName);
 
-    Integer updateUser(User user);
+    int updateUser(User user);
 
-    Integer deleteUser(Long usrId);
+    int deleteUser(Long usrId);
 
-    Integer addUser(User user);
+    int addUser(User user);
 }

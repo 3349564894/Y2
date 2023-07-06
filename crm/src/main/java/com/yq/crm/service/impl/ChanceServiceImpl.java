@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class ChanceServiceImp implements ChanceService {
+public class ChanceServiceImpl implements ChanceService {
     @Resource
     private ChanceMapper chanceMapper;
 

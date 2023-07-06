@@ -1,12 +1,9 @@
 package com.yq.crm.controller;
 
-import com.yq.crm.entity.Customer;
 import com.yq.crm.entity.Services;
-import com.yq.crm.entity.User;
 import com.yq.crm.service.ServicesService;
 import com.yq.crm.util.Page;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +18,15 @@ public class ServicesController {
     @Resource
     private ServicesService servicesService;
 
+    /**
+     * 分页查询
+     * @param svrCustName
+     * @param svrTitle
+     * @param svrType
+     * @param model
+     * @param currPageNo
+     * @return
+     */
     @RequestMapping("/dispatch")
     public String dispatch(String svrCustName, String svrTitle, String svrType, Model model, Integer currPageNo) {
         Integer page1 = currPageNo == null ? 1 : currPageNo;

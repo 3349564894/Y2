@@ -2,8 +2,10 @@ package com.yq.crm.config.shiro;
 
 import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -33,7 +35,7 @@ public class ShiroConfig {
         return shiroFilterFactoryBean;
     }
 
-    //    @Bean
+        @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBeann = new ShiroFilterFactoryBean();
         //4、将SecurityManager添加到安全对象中
@@ -51,41 +53,59 @@ public class ShiroConfig {
         chainMap.put("/js/**", "anon");
         chainMap.put("/localcss/**", "anon");
         chainMap.put("/localjs/**", "anon");
-//        chainMap.put("/user/doLogin", "anon"); //登入提交请求
-//        chainMap.put("/user/logout", "anon"); //退出请求
+        chainMap.put("/login", "anon"); //登入提交请求
+        chainMap.put("/logout", "anon"); //退出请求
         chainMap.put("/main", "anon"); //退出请求
 
         //2、添加特定权限可访问的资源==>controller中的所有请求【登入和退出除外】
-//        chainMap.put("/chance/list","perms[销售机会列表]");
-//        chainMap.put("/chance/toadd","perms[销售机会新增页面]");
-//        chainMap.put("/chance/add","perms[销售机会新增]");
-//        chainMap.put("/chance/toedit","perms[销售机会编辑页面]");
-//        chainMap.put("/chance/edit","perms[销售机会新编辑]");
-//        chainMap.put("/chance/del","perms[销售机会删除]");
+        chainMap.put("/chance/list","perms[销售机会列表]");
+        chainMap.put("/chance/toadd","perms[销售机会新增页面]");
+        chainMap.put("/chance/add","perms[销售机会新增]");
+        chainMap.put("/chance/toedit","perms[销售机会编辑页面]");
+        chainMap.put("/chance/edit","perms[销售机会新编辑]");
+        chainMap.put("/chance/del","perms[销售机会删除]");
 
-//        chainMap.put("/plan/list","perms[计划列表]");
-//        chainMap.put("/plan/toadd","perms[计划新增页面]");
-//        chainMap.put("/plan/add","perms[计划新增]");
-//        chainMap.put("/plan/toedit","perms[计划编辑页面]");
-//        chainMap.put("/plan/edit","perms[计划编辑]");
-//        chainMap.put("/plan/del","perms[计划删除]");
+        chainMap.put("/plan/list","perms[计划列表]");
+        chainMap.put("/plan/toadd","perms[计划新增页面]");
+        chainMap.put("/plan/add","perms[计划新增]");
+        chainMap.put("/plan/toedit","perms[计划编辑页面]");
+        chainMap.put("/plan/edit","perms[计划编辑]");
+        chainMap.put("/plan/del","perms[计划删除]");
 
-//        chainMap.put("/plan/list","perms[计划列表]");
-//        chainMap.put("/plan/toadd","perms[计划新增页面]");
-//        chainMap.put("/plan/add","perms[计划新增]");
-//        chainMap.put("/plan/toedit","perms[计划编辑页面]");
-//        chainMap.put("/plan/edit","perms[计划编辑]");
-//        chainMap.put("/plan/del","perms[计划删除]");
+        chainMap.put("/user/list","perms[用户列表]");
+        chainMap.put("/user/ajaxlist","perms[用户列表]");
+        chainMap.put("/user/add","perms[用户新增]");
+        chainMap.put("/user/edit","perms[用户编辑]");
+        chainMap.put("/user/del","perms[用户删除]");
 
         //其他未知请求，必须认证通过才能进入
-//        chainMap.put("/**", "authc");
+        chainMap.put("/**", "authc");
 
         shiroFilterFactoryBeann.setFilterChainDefinitionMap(chainMap);
         return shiroFilterFactoryBeann;
     }
 
+    //thymeleaf 页面上使用 shiro 标签
     @Bean(name = "shiroDialect")
     public ShiroDialect shiroDialect() {
         return new ShiroDialect();
+    }
+
+    @Bean
+    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator proxyCreator = new DefaultAdvisorAutoProxyCreator();
+        proxyCreator.setProxyTargetClass(true);
+        return proxyCreator;
+    }
+
+    /**
+     * 开启AOP注解
+     */
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(
+            SecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor sourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        sourceAdvisor.setSecurityManager(securityManager);
+        return sourceAdvisor;
     }
 }

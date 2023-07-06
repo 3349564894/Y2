@@ -9,7 +9,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class LostServiceImp implements LostService {
+public class LostServiceImpl implements LostService {
     @Resource
     private LostMapper lostMapper;
 

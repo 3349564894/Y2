@@ -1,19 +1,11 @@
 package com.yq.crm.vo;
 
-public interface UserInfo {
-    Long getUsrId();
+import lombok.Data;
 
-    String getUsrName();
-
-    String getUsrPassword();
-
-    Long getUsrRoleId();
-
-    Integer getUsrFlag();
-
-    String getUsrRoleName();
-
-    Long getCurrent();
-
-    Long getPageSize();
+@Data
+public class UserInfo {
+    private Long usrId;
+    private String usrName;
+    private Long usrRoleId;
+    private Long current = 1L;
 }

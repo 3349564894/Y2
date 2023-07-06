@@ -34,7 +34,7 @@
         <!-- sidebar menu -->
         <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
             <div class="menu_section">
-                <h3 th:text="${session.user.usrRoleName}">登录角色</h3>
+                <h3 th:text="${session.user.getRole().getRoleName()}">登录角色</h3>
                 <ul class="nav side-menu">
                     <li>
                         <a>
@@ -46,7 +46,7 @@
                                 <a href="/chance/list">销售机会管理</a>
                             </li>
                             <li>
-                                <a href="/crm/plan/list">客户开发计划</a>
+                                <a href="/plan/list">客户开发计划</a>
                             </li>
                         </ul>
                     </li>
@@ -155,7 +155,7 @@
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
             </a>
             <a data-toggle="tooltip" data-placement="top" title="退出"
-               th:href="@{/user/logout}" href="/user/logout">
+               th:href="@{/logout}" href="/user/logout">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
             </a>
         </div>
